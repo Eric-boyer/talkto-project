@@ -1,0 +1,16 @@
+{% if 1 < totalPage  %}
+    <div class="headerPagination"
+        data-controller="block-pagination"
+        data-page="{{ page|default(1) }}"
+        data-total-page="{{ totalPage|default(1) }}"
+        data-url="{{ url|default('#') }}">
+        <button class="btn p-1 btn-prev" type="button" {{ page|default(1) <= 1 ? 'disabled' }}
+                data-action="click->block-pagination#prev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="btn p-1 btn-next" type="button" {{ page|default(1) >= totalPage|default(1) ? 'disabled' }}
+                data-action="click->block-pagination#next">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+{% endif %}

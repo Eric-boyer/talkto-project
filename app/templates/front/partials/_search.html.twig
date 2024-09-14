@@ -1,0 +1,66 @@
+<!-- search area start -->
+<section class="header__search white-bg transition-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="header__search-inner text-center">
+                    <form action="{{ path('front_product_search') }}" method="get">
+                        <div class="header__search-btn">
+                            <a title="Fermez" href="#" rel="nofollow" class="header__search-btn-close"><i class="fal fa-times"></i></a>
+                        </div>
+                        <div class="header__search-header">
+                            <h3>Recherche</h3>
+                        </div>
+                        <div class="header__search-categories">
+                            <ul class="search-category">
+                                {% for category in getProductCategories() %}
+                                    <li><a href="{{ path('front_product_category', {'productCategory': category.slug}) }}">{{ category.title }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="header__search-input p-relative">
+                            <input type="text" placeholder="Recherche de produits... " name="searchProducts"
+                                    {{ stimulus_controller('symfony/ux-autocomplete/autocomplete', {
+                                        url: path('ux_entity_autocomplete', { alias: 'product' })
+                                    }) }}
+                            >
+                            <button type="submit" aria-label="Search"><i class="far fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="body-overlay transition-3"></div>
+<!-- search area end -->
+
+<!-- extra info area start -->
+<section class="extra__info transition-3">
+    <div class="extra__info-inner">
+        <div class="extra__info-close text-right">
+            <a href="#" rel="nofollow" class="extra__info-close-btn"><i class="fal fa-times"></i></a>
+        </div>
+        <!-- side-mobile-menu start -->
+        <nav class="side-mobile-menu d-block d-lg-none">
+            <ul id="mobile-menu-active">
+                <li class="active has-dropdown">
+                    <a class="has-arrow" href="#" rel="nofollow">Catégories</a>
+                    <ul class="submenu transition-3">
+                        {% for index, category in getProductCategories() %}
+                            <li>
+                                <a href="{{ path('front_product_category', {'productCategory': category.slug}) }}" title="{{ category.title }}">
+                                    {{ category.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li><a href="{{ path('front_user_new') }}" title="Locataire">Locataire</a></li>
+                <li><a href="{{ path('front_seller_new') }}" title="Bailleur">Bailleur</a></li>
+            </ul>
+        </nav>
+        <!-- side-mobile-menu end -->
+    </div>
+</section>
+<!-- extra info area end -->

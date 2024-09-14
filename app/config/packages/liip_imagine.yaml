@@ -1,0 +1,96 @@
+# Documentation on how to configure the bundle can be found at: https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html
+liip_imagine:
+    # valid drivers options include "gd" or "gmagick" or "imagick"
+    driver: "imagick"
+    controller:
+        redirect_response_code: 302
+    twig:
+        mode: lazy
+
+    filter_sets:
+        # profil filters
+        logo:
+            format: webp
+            quality: 100
+            filters:
+                strip: ~
+                relative_resize:
+                    heighten: 49
+        profil:
+            format: webp
+            quality: 100
+            filters:
+                downscale:
+                    max: [ 315, 315 ]
+        profil_miniature:
+            format: webp
+            quality: 100
+            filters:
+                fixed:
+                    [ 120, 120 ]
+        ## home page filters
+        home_slider:
+            format: webp
+            quality: 100
+            filters:
+                thumbnail: { size: [ 1254, 750 ], mode: inset, allow_upscale: true }
+        home_under_slider:
+            format: webp
+            quality: 100
+            filters:
+                thumbnail: { size: [ 376, 233 ], mode: outbound, allow_upscale: true }
+        home_top:
+            quality: 85
+            filters:
+                downscale:
+                    max: [ 950, 457 ]
+        home_mid:
+            quality: 85
+            filters:
+                downscale:
+                    max: [ 950, 457 ]
+
+        home_latest:
+            quality: 85
+            filters:
+                downscale:
+                    max: [ 240, 125 ]
+
+        # product filters
+        product_modal:
+            quality: 85
+            filters:
+                relative_resize:
+                    heighten: 403
+        product_modal_miniature:
+            quality: 85
+            filters:
+                relative_resize:
+                    heighten: 130
+        product_trends_or_sale:
+            quality: 85
+            filters:
+                relative_resize:
+                    heighten: 344
+        product_latest:
+            quality: 85
+            filters:
+                auto_rotate: ~
+                relative_resize:
+                    heighten: 333
+
+        product_details:
+            quality: 85
+            filters:
+                relative_resize:
+                    heighten: 600
+        product_miniature_details:
+            quality: 85
+            filters:
+                relative_resize:
+                    heighten: 115
+        product_miniature:
+            quality: 85
+            filters:
+                relative_resize:
+                    heighten: 128

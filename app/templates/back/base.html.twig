@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Reented BackOffice | {% block title %}{% endblock %}</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="icon" type="image/png" href="{{ asset('favicon.ico') }}" sizes="75x75"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
+    <link rel="mask-icon" href="{{ asset('safari-pinned-tab.svg') }}" color="#bc8246">
+    <meta name="apple-mobile-web-app-title" content="Reented">
+    <meta name="application-name" content="Reented">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#bc8246">
+
+    <meta name="robots" content="noindex, nofollow">
+    <meta content="Reented - BackOffice" name="description"/>
+    <link rel="canonical" href="{{ app.request.schemeAndHttpHost }}" />
+
+    <meta name="turbo-cache-control" content="no-cache">
+    <meta name="turbo-visit-control" content="reload">
+    {% block stylesheets %}
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet"/>
+        {{ encore_entry_link_tags('back_app') }}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    {{ encore_entry_script_tags('app') }}
+    {% for file in encore_entry_js_files('back_app') %}
+        <script src="{{ asset(file) }}"></script>
+    {% endfor %}
+</head>
+<body data-turbo-cache="false" {{ stimulus_controller('back-commun') }}>
+{% block body %}
+{% endblock %}
+
+{% block javascripts %}
+
+    {% for flash_message in app.session.flashBag.get('success') %}
+    <script>toastr.success("{{ flash_message }}")</script>
+    {% endfor %}
+    {% for flash_message in app.session.flashBag.get('error') %}
+    <script>toastr.error("{{ flash_message }}")</script>
+    {% endfor %}
+
+    {% if form is defined and not form.vars.valid %}
+    <script>toastr.error("Des erreurs sont présentes dans le formulaire.")</script>
+    {% endif %}
+{% endblock %}
+</body>
+</html>

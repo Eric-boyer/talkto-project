@@ -1,0 +1,29 @@
+{% extends 'front/layout.html.twig' %}
+
+{% block title %}Nouveau compte bailleur{% endblock %}
+
+{% block content %}
+
+    <!-- login Area Strat-->
+    <section class="login-area pt-50 pb-100" {{ stimulus_controller('user') }}>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="basic-login">
+                        <h3 class="text-center">{{ app.user ? 'Mes informations' : 'Compte bailleur' }} </h3>
+                        {{ include('front/user/partials/_form.html.twig') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- login Area End-->
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var googleRecaptchPkey = '{{ googleRecaptchPkey }}';
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?render={{ googleRecaptchPkey }}"></script>
+{% endblock %}

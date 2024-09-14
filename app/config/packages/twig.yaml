@@ -1,0 +1,25 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    debug: '%kernel.debug%'
+    form_themes:
+        - 'bootstrap_4_layout.html.twig'
+        - 'front/form/_form_layout.html.twig'
+
+    globals:
+        googleTag: '%google_tag%'
+        googleGTM: '%google_gtm%'
+        googleRecaptchPkey: '%google_recaptcha_pkey%'
+        uploadsDirectoryImg: '%base_path_twig%'
+        stripePublicKey: '%public_key%'
+    paths:
+        # point this wherever your images live
+        '%kernel.project_dir%/assets/images': images
+        '%kernel.project_dir%/assets/styles': styles
+
+when@prod:
+    twig:
+        cache: '%kernel.cache_dir%/twig'
+
+when@test:
+    twig:
+        strict_variables: true

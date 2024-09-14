@@ -1,0 +1,40 @@
+{% extends 'front/layout.html.twig' %}
+
+{% block title %}Gestion de vos données personnelles{% endblock %}
+
+{% block content %}
+    <section class="shop__area pb-65" {{ stimulus_controller('bigpicture')|stimulus_controller('rating') }}>
+        <div class="shop__top grey-bg-6 pt-50 pb-90">
+            <div class="container">
+            <div class="row">
+                <div class="col-lg-3 mb-lg-0 text-right">
+                    {{ include('front/rights/_nav_right.html.twig') }}
+                </div>
+                <div class="col-lg-9 mb-sm-12 mb-lg-0">
+                    <div class="mb-5">
+                        <div class="text-center">
+                            <h1>Gestion de vos données personnelles</h1>
+                        </div>
+                    </div>
+                    <p class="">
+                        Le présent site et l’application qu’il désigne sont exploités par la société
+                        Alsi WebTech,
+                        {# SAS au capital de 36 486,44 € #} immatriculée sous le
+                        numéro {# 535 217 723 au RCS de PARIS #},
+                        dont le siège social est situé 24 allée du cerf 95800 Courdimanche
+                        et représentée par sa Présidente Monsieur Sanon Frandzdy (n° TVA
+                        FR {# 56 53 52 177 23 #}).
+                    </p>
+                    <p>
+                        Le Directeur de Publication du site est Monsieur Sanon Frandzdy.
+                    </p>
+                    <p>
+                        E-mail à l’adresse : <a title="E-mail de contact"
+                                               href="mailto:contact@reented">contact@reented</a>
+                    </p>
+                </div>
+            </div>
+            </div>
+            </div>
+    </section>
+{% endblock %}

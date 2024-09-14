@@ -1,0 +1,49 @@
+{% block subject %}Reented – Clôture de compte{% endblock %}
+
+{% block body_html %}
+    {% embed 'emails/_layout.html.twig' %}
+        {% block title %}Clôture de compte{% endblock %}
+        {% block accroche %}Clôture de compte{% endblock %}
+        {% block body %}
+            <tr>
+                <td style="padding-top:20px;">
+                    <h3>Bonjour {{ user.firstname }},</h3>
+                    <p>
+                        Votre compte présente une inactivité depuis 1 an.
+                    </p>
+                    <p>
+                        Vous avez reçu un e-mail, il y a un mois vous avertissant que nous allions procéder à la suppression de votre compte.<br>
+                        À la réception de cet e-mail, votre compte a été supprimé.
+                    </p>
+                    <p>
+                        Si vous avez des questions, n'hésitez pas à nous contacter via notre site pour vous garantir un service de qualité et sécurisé.
+                    </p>
+                    <p>
+                        Cordialement,<br/>
+                        L'équipe Reented<br/>
+                        <a title="Site Reented" href="{{ app.request.schemeAndHttpHost }}">{{ app.request.schemeAndHttpHost }}</a>
+                    </p>
+                    <p style="color: #8698A5; font-size: 15px;">Ce message est généré automatiquement, merci de ne pas y répondre directement.</p>
+                </td>
+            </tr>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block body_text %}
+    Bonjour {{ user.firstname }},\n
+    \n
+    Votre compte présente une inactivité depuis 1 an.\n
+    \
+    Vous avez reçu un e-mail, il y a un mois vous avertissant que nous allions procéder à la suppression de votre compte.\n
+    À la réception de cet e-mail, votre compte a été supprimé.\n
+    \n
+    Si vous avez des questions, n'hésitez pas à nous contacter via notre site pour vous garantir un service de qualité et sécurisé.\n
+    \n
+    Cordialement,\n
+    \n
+    L'équipe Reented\n
+    {{ app.request.schemeAndHttpHost }}\n
+    \n
+    Ce message est généré automatiquement, merci de ne pas y répondre directement.\n
+{% endblock %}

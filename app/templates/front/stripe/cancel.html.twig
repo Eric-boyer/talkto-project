@@ -1,0 +1,34 @@
+{% extends 'front/layout.html.twig' %}
+
+{% block title %}Paiement annulé{% endblock %}
+
+{% block content %}
+    <!-- App features section-->
+    <!-- error area start -->
+    <section class="error__area pt-60 pb-100">
+        <div class="container">
+            <div class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2">
+                <div class="error__content text-center">
+                    <h2>
+                        <span class="highlight comment">Paiement annulé</span>
+                    </h2>
+                    <p>
+                        Vous avez annulé le paiement ou une erreur est survenue.<br>
+                        Vous avez toujours la possibilité de poursuivre votre réservation plus tard.
+                    </p>
+                    <p>
+                        Merci de votre confiance l'équipe <span class="highlight comment">Reented</span>
+                    </p>
+                    <p class="text-center">
+                        <a class="os-btn os-btn-black" title="Retourner au paiement"
+                           href="{{ path('front_stripe_payment_intent') }}">Retourner au paiement</a>
+                        <br>
+                        <br>
+                        <a class="os-btn os-btn-black" title="Retourner à votre espace"
+                           href="{{ path('front_user_account') }}">Retourner à votre espace</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

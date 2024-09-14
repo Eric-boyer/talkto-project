@@ -1,0 +1,87 @@
+<!doctype html>
+<html class="no-js" lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Reented | {% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="icon" type="image/png" href="{{ asset('favicon.ico') }}" sizes="75x75"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
+    <link rel="mask-icon" href="{{ asset('safari-pinned-tab.svg') }}" color="#bc8246">
+    <meta name="apple-mobile-web-app-title" content="Reented">
+    <meta name="application-name" content="Reented">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#bc8246">
+
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ app.request.schemeAndHttpHost }}" />
+    <meta content="{{ 'meta.description'|trans }}" name="description"/>
+    <meta content="{{ 'meta.keywords'|trans }}" name="keywords">
+
+    <meta name="turbo-cache-control" content="no-cache">
+    <meta name="turbo-visit-control" content="reload">
+    <!-- CSS here -->
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app', attributes={
+            preload: true,
+            preconnect: true
+        }) }}
+        {{ encore_entry_link_tags('front_app', attributes={
+            preload: true,
+            preconnect: true
+        }) }}
+    {% endblock %}
+    {#            <script src="{{ app.request.schemeAndHttpHost }}:1337/socket.io/socket.io.js"></script> #}
+    <script type="text/javascript">
+        const googleTag = '{{ googleTag }}';
+        const googleGTM = '{{ googleGTM }}';
+        const stripePublicKey = '{{ stripePublicKey }}';
+        const policyUrl = '{{ absolute_url(path('front_policy')) }}';
+        let isLogged = false;
+        let lat = {{ app.request.session.get('lat', 0) }};
+        let lon = {{ app.request.session.get('lon', 0) }};
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ googleTag }}');
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        const userId = '{{ app.user.token }}';
+        const lastname = '{{ app.user.lastname }}';
+        const firstname = '{{ app.user.firstname }}';
+        const email = '{{ app.user.email }}';
+        lat = '{{ app.user.lat|default(0) }}';
+        lon = '{{ app.user.lon|default(0) }}';
+        isLogged = true;
+        {% endif %}
+    </script>
+    {{ encore_entry_script_tags('app', attributes={
+        preload: true,
+        preconnect: true
+    }) }}
+    {{ encore_entry_script_tags('front_app', attributes={
+        preload: true,
+        preconnect: true
+    }) }}
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+</head>
+<body id="page-top" data-turbo-cache="false" {{ stimulus_controller('commun')|stimulus_controller('symfony/ux-swup/swup', {theme: 'overlay'}) }}>
+<main id="swup">{% block body %}{% endblock %}</main>
+
+{% for flash_message in app.session.flashBag.get('success') %}
+    <span {{ stimulus_controller('alert') }} data-type="success" data-message="{{ flash_message }}"></span>
+{% endfor %}
+{% for flash_message in app.session.flashBag.get('error') %}
+    <span {{ stimulus_controller('alert') }} data-type="error" data-message="{{ flash_message }}"></span>
+{% endfor %}
+{% block javascripts %}
+    <script src="{{ asset('build/tarteaucitron/tarteaucitron.js') }}"></script>
+{% endblock %}
+</body>
+</html>

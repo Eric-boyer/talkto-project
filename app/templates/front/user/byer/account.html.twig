@@ -1,0 +1,243 @@
+{% extends 'front/layout.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% set pictureName = '' %}
+{% if user.picture is not null %}
+    {% set pictureName = user.picture.name %}
+{% endif %}
+
+{% block content %}
+    <!-- profile area start -->
+    <section class="profile__area pt-120 pb-50 grey-bg">
+        <div class="container">
+            <div class="profile__basic-inner pb-20 bg-white">
+                <div class="row align-items-center">
+                    <div class="col-xxl-6 col-md-6">
+                        <div class="profile__basic d-md-flex align-items-center">
+                            <div class="profile__basic-thumb mr-30">
+                                {% set typePicture = user.genre.value == constant('App\\Enum\\Civility::MEN').value ? 'https://bootdey.com/img/Content/avatar/avatar2.png' : 'https://bootdey.com/img/Content/avatar/avatar3.png' %}
+                                <img src="{{ pictureName ? asset('uploads/profile_picture/' ~ pictureName)|imagine_filter('profil_miniature') : typePicture }}"
+                                     width="120" height="120" class="img-fluid"
+                                     alt="{{ pictureName ? user.fullname : typePicture }}">
+                            </div>
+                            <div class="profile__basic-content">
+                                <h3 class="profile__basic-title">
+                                    Bienvenue
+                                    <span>{{ user.fullname }}</span> {% if user.role is same as (constant('App\\Entity\\User::ROLE_GUESS')) %}{{ user.roleAsLabel }}{% endif %}
+                                </h3>
+                                {% if user.role is not same as (constant('App\\Entity\\User::ROLE_SELLER')) %}
+                                    <p>{{ getNumberReservationOnProgress(user) }} location(s) en cours</p>
+                                {% else %}
+                                    {% if urlActivation is same as (true) %}
+                                        <p>
+                                            Votre compte bailleur n'est pas encore actif.
+                                            <a href="{{ urlActivationAccount }}"
+                                               title="lien d'activation du compte bailleur">
+                                                Activer votre compte
+                                            </a>
+                                        </p>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-6 col-md-6">
+                        <div class="profile__basic-cart d-flex align-items-center justify-content-md-end">
+                            <div class="cart-info mr-10">
+                                <a href="{{ path('front_cart_index') }}"> Voir mon panier </a>
+                            </div>
+                            <div class="cart-item">
+                                <a href="{{ path('front_cart_index') }}">
+                                    <i class="fa-regular fa-basket-shopping"></i>
+                                    <span class="cart-quantity">{{ carts.totalQuantity|default(0) }}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- profile area end -->
+
+    <!-- profile menu area start -->
+    <section class="profile__menu pb-70 grey-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-xxl-4 col-md-4">
+                    <div class="profile__menu-left bg-white mb-50">
+                        <h3 class="profile__menu-title"><i class="fa fa-list-alt"></i> Menu</h3>
+                        <div class="profile__menu-tab">
+                            <div class="nav nav-tabs flex-column justify-content-start text-start" id="nav-tab"
+                                 role="tablist">
+                                <button class="nav-link active" id="nav-account-tab" data-toggle="tab"
+                                        data-target="#nav-account" type="button" role="tab" aria-controls="nav-account"
+                                        aria-selected="true">
+                                    <i class="fa fa-user"></i>
+                                    Mon compte
+                                </button>
+                                {% if user.isStripeAccountActive and user.role is same as (constant('App\\Entity\\User::ROLE_SELLER')) %}
+                                    <button class="nav-link">
+                                        <i class="fa fa-user-tie"></i>
+                                        <a href="{{ getAccountLink(app.user) }}" data-turbo="false" target="_blank"
+                                           title="Compte stripe">
+                                            Compte stripe
+                                        </a>
+                                    </button>
+                                    <button class="nav-link" id="nav-product-tab" data-toggle="tab"
+                                            data-target="#nav-product"
+                                            type="button" role="tab" aria-controls="nav-product" aria-selected="false">
+                                        <i class="fa fa-bags-shopping"></i>
+                                        Mes biens
+                                    </button>
+                                {% endif %}
+                                {% if user.role is same as constant('App\\Entity\\User::ROLE_SELLER') %}
+                                    <button class="nav-link" id="nav-reservation-tab" data-toggle="tab"
+                                            data-target="#nav-reservation"
+                                            type="button" role="tab" aria-controls="nav-reservation"
+                                            aria-selected="false">
+                                        <i class="fa fa-calendar"></i>
+                                        Mes réservations
+                                    </button>
+                                    <button class="nav-link" id="nav-rents-tab" data-toggle="tab"
+                                            data-target="#nav-rents"
+                                            type="button" role="tab" aria-controls="nav-rents"
+                                            aria-selected="false">
+                                        <i class="fa fa-calendar-check"></i>
+                                        Mes locations
+                                    </button>
+                                {% else %}
+                                    <button class="nav-link" id="nav-reservation-tab" data-toggle="tab"
+                                            data-target="#nav-reservation"
+                                            type="button" role="tab" aria-controls="nav-reservation"
+                                            aria-selected="false">
+                                        <i class="fa fa-calendar-check"></i>
+                                        Mes locations
+                                    </button>
+                                {% endif %}
+                                {% if user.role is not same as (constant('App\\Entity\\User::ROLE_GUESS')) %}
+                                    <button class="nav-link" id="nav-wishlist-tab" data-toggle="tab"
+                                            data-target="#nav-wishlist"
+                                            type="button" role="tab" aria-controls="nav-wishlist"
+                                            aria-selected="false">
+                                        <i class="fas fa-heart"></i>
+                                        Mes favoris
+                                    </button>
+                                    <a class="btn nav-link post-confirm"
+                                       data-button-text="Désactiver"
+                                       data-title="Désactiver mon compte"
+                                       data-confirm-message="Souhaitez-vous désactiver votre compte ?"
+                                       href="{{ path('front_user_deactivate') }}" title="Désactiver mon compte">
+                                        <i class="fas fa-trash text-danger"></i>
+                                        Désactiver mon compte
+                                    </a>
+                                {% endif %}
+                                <a href="{{ path('front_logout') }}"  data-turbo="false" class="btn nav-link" title="Déconnexion">
+                                    <i class="fa fa-sign-out text-danger"></i>
+                                    Déconnexion
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-8 col-md-8">
+                    <div class="profile__menu-right">
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-account" role="tabpanel"
+                                 aria-labelledby="nav-account-tab">
+                                {% include ('front/user/partials/_profil_info.html.twig') %}
+                            </div>
+                            {% if user.isStripeAccountActive and user.role is same as (constant('App\\Entity\\User::ROLE_SELLER')) %}
+                                <div class="tab-pane fade" id="nav-product" role="tabpanel"
+                                     aria-labelledby="nav-product-tab">
+                                    {% include "front/partials/_block_pagination.html.twig" with {
+                                        page: collections.products.page,
+                                        totalPage: collections.products.totalPage,
+                                        url: path('front_user_collection', {
+                                            'name': 'products',
+                                            'page': "_PAGE_"
+                                        })
+                                    } %}
+                                    <div class="card-body pb-0 position-relative">
+                                        <div class="table-responsive scrollbar mx-ncard">
+                                            {% include "front/user/partials/_products.html.twig" with {'results': collections.products|default([])} only %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% if user.role is same as (constant('App\\Entity\\User::ROLE_SELLER')) %}
+                                <div class="tab-pane fade" id="nav-reservation" role="tabpanel"
+                                     aria-labelledby="nav-reservation-tab">
+                                    {% include "front/partials/_block_pagination.html.twig" with {
+                                        page: collections.reservations.page,
+                                        totalPage: collections.reservations.totalPage,
+                                        url: path('front_user_collection', {
+                                            'name': 'reservations',
+                                            'page': "_PAGE_"
+                                        })
+                                    } %}
+                                    <div class="card-body pb-0 position-relative">
+                                        <div class="table-responsive scrollbar mx-ncard">
+                                            {% include "front/user/partials/_reservations.html.twig" with {'results': collections.reservations|default([]), 'title': 'Mes réservations'} only %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="nav-rents" role="tabpanel"
+                                     aria-labelledby="nav-rents-tab">
+                                    {% include "front/partials/_block_pagination.html.twig" with {
+                                        page: collections.rents.page,
+                                        totalPage: collections.rents.totalPage,
+                                        url: path('front_user_collection', {
+                                            'name': 'rents',
+                                            'page': "_PAGE_"
+                                        })
+                                    } %}
+                                    <div class="card-body pb-0 position-relative">
+                                        <div class="table-responsive scrollbar mx-ncard">
+                                            {% include "front/user/partials/_reservations.html.twig" with {'results': collections.reservations|default([]), 'title': 'Mes locations'} only %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="tab-pane fade" id="nav-reservation" role="tabpanel"
+                                     aria-labelledby="nav-reservation-tab">
+                                    {% include "front/partials/_block_pagination.html.twig" with {
+                                        page: collections.reservations.page,
+                                        totalPage: collections.reservations.totalPage,
+                                        url: path('front_user_collection', {
+                                            'name': 'reservations',
+                                            'page': "_PAGE_"
+                                        })
+                                    } %}
+                                    <div class="card-body pb-0 position-relative">
+                                        <div class="table-responsive scrollbar mx-ncard">
+                                            {% include "front/user/partials/_reservations.html.twig" with {'results': collections.reservations|default([]), 'title': 'Mes locations'} only %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <div class="tab-pane fade" id="nav-wishlist" role="tabpanel"
+                                 aria-labelledby="nav-wishlist-tab">
+                                {% include "front/partials/_block_pagination.html.twig" with {
+                                    page: collections.wishlists.page,
+                                    totalPage: collections.wishlists.totalPage,
+                                    url: path('front_user_collection', {
+                                        'name': 'wishlists',
+                                        'page': "_PAGE_"
+                                    })
+                                } %}
+                                <div class="card-body pb-0 position-relative">
+                                    <div class="table-responsive scrollbar mx-ncard">
+                                        {% include "front/user/partials/_wishlists.html.twig" with {'results': collections.wishlists|default([])} only %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- profile menu area end -->
+{% endblock %}

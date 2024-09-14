@@ -1,0 +1,120 @@
+{% extends 'front/layout.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block content %}
+
+    <section class="cart-area pt-50 pb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="#">
+                        <div class="table-content table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="product-thumbnail">Photo</th>
+                                    <th class="cart-product-name">Produit</th>
+                                    <th class="product-quantity">Date</th>
+                                    <th class="product-price">Prix TTC / Jour</th>
+                                    <th class="product-quantity">Quantité</th>
+                                    <th class="product-subtotal">Total</th>
+                                    <th class="product-remove">Supprimer</th>
+                                </tr>
+                                </thead>
+                                <tbody id="cart-products">
+                                {% for index, product in carts['products'] %}
+                                    <tr>
+                                        <td class="product-thumbnail">
+                                            <a title="{{ product.title }}" href="{{ path('front_product_reservation_show_detail', {'token': index}) }}">
+                                                <img src="{{ data_uri_thumbnail('build/images/front/loading.jpg', 130, 130) }}"
+                                                        {{ stimulus_controller('symfony/ux-lazy-image/lazy-image', {
+                                                            src: asset('uploads/product_picture/' ~ product.pictureName)|imagine_filter('product_miniature')
+                                                        }) }}
+                                                     width="130" height="130" class="img-fluid"
+                                                     alt="{{ product.title }}"/>
+                                            </a>
+                                        </td>
+                                        <td class="product-name"><a
+                                                    href="{{ path('front_product_reservation_show_detail', {'token': index}) }}">{{ product.title }}</a>
+                                        </td>
+                                        <td class="product-quantity">
+                                            <input id="startDate" {{ stimulus_controller('datetimepicker') }}
+                                                   placeholder="jj/mm/aaaa" type="text" value="{{ product.flatpickrDate }}"
+                                                   data-token="{{ index }}" data-disabled-dates="{{ product.disabledDates }}" style="text-align: center;"/>
+                                        </td>
+                                        <td class="product-price"><span>{{ product.price|number_format(2, ',')|default(0) }} </span>€</td>
+                                        <td class="product-quantity">
+                                            <div class="cart-plus-minus-cart"><input data-max="" type="text"
+                                                                                     id="quantity"
+                                                                                     value="{{ product.quantity }}"/></div>
+                                            <input type="hidden" value="{{ index }}" id="token">
+                                        </td>
+                                        <td class="product-subtotal"><span
+                                                    class="amount">{{ (product.price * product.quantity * product.numberDays)|number_format(2, ',')|default(0) }} </span>€
+                                        </td>
+                                        <td class="product-remove">
+                                            <a href="{{ path('front_cart_delete', {'token':index}) }}"
+                                               class="post-confirm"
+                                               data-button-text="Supprimer"
+                                               data-title="Supprimer"
+                                               title="Supprimer"
+                                               data-toggle="tooltip" data-placement="top"
+                                               data-confirm-message="Souhaitez-vous supprimer ce produit ?"
+                                            >
+                                                <i class="fa fa-times"></i></a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="coupon-all">
+                                    {#                                    <div class="coupon"> #}
+                                    {#                                        <input id="coupon_code" class="input-text" name="coupon_code" value="" #}
+                                    {#                                               placeholder="Coupon code" type="text"> #}
+                                    {#                                        <button class="os-btn os-btn-black" name="apply_coupon" type="submit">Apply #}
+                                    {#                                            coupon #}
+                                    {#                                        </button> #}
+                                    {#                                    </div> #}
+                                    <div class="coupon2">
+                                        <a class="os-btn os-btn-black update-cart">
+                                            Mettre à jour le panier
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5 ml-auto">
+                                <div class="cart-page-total">
+                                    <h2>Total</h2>
+                                    <ul class="mb-20">
+                                        <li>
+                                            Total
+                                            HT<span>{{ (carts.totalAmount - carts.totalTva - carts.totalFees)|number_format(2, ',')|default(0) }} €</span>
+                                        </li>
+                                        <li>
+                                            TVA (20%) <span>{{ carts.totalTva|number_format(2, ',')|default(0) }} €</span></li>
+                                        <li>
+                                            Frais de service <i class="far fa-info-circle" style="color: #bc8246;" data-toggle="tooltip" data-placement="top"
+                                                                title="Le montant des frais de service représente 10% du montant TTC."></i>
+                                            <span>{{ carts.totalFees|number_format(2, ',')|default(0) }} €</span>
+                                        </li>
+                                        <li><b>Total TTC</b><span id="totalAmountTtc"
+                                                                  class="text-black font-weight-bold">{{ carts.totalAmount|number_format(2, ',')|default(0) }} €</span>
+                                        </li>
+                                    </ul>
+                                    <a class="os-btn" href="{{ path('front_stripe_payment_intent') }}">Réserver</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Cart Area End-->
+{% endblock %}
+

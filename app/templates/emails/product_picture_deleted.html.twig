@@ -1,0 +1,52 @@
+{% block subject %}Reented – Photo de produit invalide{% endblock %}
+
+{% block body_html %}
+    {% embed 'emails/_layout.html.twig' %}
+        {% block title %}Photo de produit invalide{% endblock %}
+        {% block accroche %}Photo de produit invalide{% endblock %}
+        {% block body %}
+            <tr>
+                <td style="padding-top:20px;">
+                    <h3>Bonjour {{ user.firstname }},</h3>
+                    <p>
+                        Votre produit <strong>{{ product.title }}</strong> comporte une photo non conforme à nos <a href="{{ path('front_cgu') }}" title="c.g.u">c.g.u</a>.
+                    </p>
+                    <p>
+                        De ce fait, notre équipe de validation a été contrainte de la supprimer, afin de respecter nos <a href="{{ path('front_cgu') }}" title="c.g.u">c.g.u</a>.
+                    </p>
+                    <p>
+                        Retrouvez les informations concernant votre produit dans votre espace -> <a href="{{ path('front_user_account') }}" title="Mes biens">mes biens</a>.
+                    </p>
+                    <p>
+                        Si vous avez des questions, n'hésitez pas à nous contacter via notre site pour vous garantir un service de qualité et sécurisé.
+                    </p>
+                    <p>
+                        Cordialement,<br/>
+                        L'équipe Reented<br/>
+                        <a title="Site Reented" href="{{ app.request.schemeAndHttpHost }}">{{ app.request.schemeAndHttpHost }}</a>
+                    </p>
+                    <p style="color: #8698A5; font-size: 15px;">Ce message est généré automatiquement, merci de ne pas y répondre directement.</p>
+                </td>
+            </tr>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block body_text %}
+    Bonjour {{ user.firstname }},\n
+    \n
+    Votre produit <strong>{{ product.title }}</strong> comporte une photo non conforme à nos c.g.u : {{ path('front_cgu') }}.\n
+    \n
+    De ce fait, notre équipe de validation a été contrainte de la supprimer, afin de respecter nos c.g.u : {{ path('front_cgu') }}.\n
+    \n
+    Retrouvez les informations concernant votre produit dans votre espace -> "mes biens" : {{ path('front_user_account') }}.\n
+    \n
+    Si vous avez des questions, n'hésitez pas à nous contacter via notre site pour vous garantir un service de qualité et sécurisé.\n
+    \n
+    Cordialement,\n
+    \n
+    L'équipe Reented\n
+    {{ app.request.schemeAndHttpHost }}\n
+    \n
+    Ce message est généré automatiquement, merci de ne pas y répondre directement.\n
+{% endblock %}

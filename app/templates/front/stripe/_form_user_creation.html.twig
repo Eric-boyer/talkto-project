@@ -1,0 +1,89 @@
+{{ form_start(form, {'attr': {'autocomplete':'off', 'id': 'user-reservation-form', 'data-user-target': 'userForm', 'data-action' : 'user#checkRecaptcha'}}) }}
+<div class="col-md-12">
+    <div class="checkout-form-list">
+        {{ form_widget(form.genre) }}
+        {{ form_errors(form.genre) }}
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="checkout-form-list">
+        {{ form_widget(form.firstname) }}
+        {{ form_errors(form.firstname) }}
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="checkout-form-list">
+        {{ form_widget(form.lastname) }}
+        {{ form_errors(form.lastname) }}
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="checkout-form-list">
+        {{ form_widget(form.address) }}
+        <div class="zone-address">
+            <ul class="address d-none">
+            </ul>
+        </div>
+        {{ form_errors(form.address) }}
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="checkout-form-list">
+        {{ form_widget(form.additionalAddress) }}
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="checkout-form-list">
+        {{ form_widget(form.city) }}
+        {{ form_errors(form.city) }}
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="checkout-form-list">
+        {{ form_widget(form.country) }}
+        {{ form_errors(form.country) }}
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="checkout-form-list">
+        {{ form_widget(form.zipCode) }}
+        {{ form_errors(form.zipCode) }}
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="checkout-form-list">
+        {{ form_widget(form.email) }}
+        {{ form_errors(form.email) }}
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="checkout-form-list">
+        {{ form_widget(form.phone) }}
+        {{ form_errors(form.phone) }}
+    </div>
+</div>
+{% if not app.user %}
+    <div class="col-md-12">
+        <div class="row checkout-form-list create-acc">
+            <div class="col-6">
+                {{ form_widget(form.isGuess) }}
+            </div>
+            <div class="col-6">
+                {{ form_widget(form.terms) }}
+            </div>
+        </div>
+        <div id="cbox_info" class="checkout-form-list create-account">
+            <p>Créer un compte en indiquant les informations ci-dessus.
+                Si vous êtes déjà client, veuillez vous connecter au haut de cette page.</p>
+            {{ form_widget(form.plainPassword) }}
+        </div>
+    </div>
+    <div class="col-md-12 text-center">
+        <button type="submit" id="user-submit-btn" class="os-btn os-btn-black"
+                data-loading-img="{{ asset('build/images/front/pulse.gif') }}"
+                formnovalidate="formnovalidate">
+            Enregistrer
+        </button>
+    </div>
+{% endif %}
+{{ form_end(form) }}

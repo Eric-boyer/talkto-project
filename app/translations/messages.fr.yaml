@@ -1,0 +1,30 @@
+# traduction pour le header du site
+meta:
+    keywords: "Location de meuble, Location d'outils, Outils de jardinage, Meuble, Appareils ménager, de Particulier à particulier, ldp, Location entre particulier, Devenir bailleur, Devenez Locataire, Bailleur, Locataire, Location, Bail"
+    description: "Explorez la facilité de la location de produits adaptée à vos besoins locaux de particulier à particulier sur Reented.
+     Notre plateforme connecte les bailleurs et les locataires au sein de zones spécifiques, simplifiant la recherche et la location
+     d'équipements, de meuble, d'outils de jardinage et d'articles d'extérieur auprès de personnes de confiance dans votre quartier.
+     Favorisant une économie collaborative, Reented offre une expérience de location locale,
+     avec une gamme variée de produits facilement accessibles à proximité. Rejoignez-nous dès aujourd'hui en devenant bailleur ou locataire pour profiter
+     d'une location sans tracas et contribuer à une communauté de partage dynamique!"
+
+# traduction pour le select du back office
+front_user_new: "Compte client"
+front_seller_new: "Compte bailleur"
+front_aboutus: "À propos de nous"
+
+# HTML Traduction
+Bonjour: 'Bonjour'
+-- Sélectionner --: '-- Sélectionner --'
+Titre: 'Titre'
+Sous-titre: 'Sous-titre'
+Lien vers: 'Lien vers'
+Fichier (10Mo): 'Lien vers'
+Information requise: 'Information requise'
+
+Produit: 'Produit'
+Montant TTC: 'Montant TTC'
+Montant T.V.A: 'Montant T.V.A'
+
+Afficher: 'Afficher'
+Masquer: 'Masquer'

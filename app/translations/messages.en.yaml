@@ -1,0 +1,24 @@
+meta:
+    keywords: "Local product rentals, Neighborhood rentals, Rent nearby, Collaborative economy platform, Location-based renting, Event equipment rental, Tools for rent, Outdoor gear for rent, Peer-to-peer rentals, Local marketplace, Community sharing, Short-term rentals, Easy local renting, Trusted rental network, Rent from locals, Proximity-based rentals, Convenient neighborhood rentals, Sustainable renting, Accessible local renting, Secure peer rentals"
+    description: "Discover the convenience of renting products tailored to your local needs on Reented.
+    Our platform connects users within specific areas, simplifying the search and rental of equipment, tools,
+    and outdoor items from trustworthy individuals in your neighborhood. Embracing a collaborative economy,
+    Reented offers a seamless local rental experience, featuring a diverse range of products easily accessible nearby.
+    Join us today to enjoy hassle-free rentals and contribute to a vibrant sharing community!"
+
+# traduction pour le select du back office
+front_user_new: 'Renter account'
+front_seller_new: 'Lessor account'
+front_aboutus: 'About us'
+
+# HTML Traduction
+-- Sélectionner --: '-- Select --'
+Bonjour: 'Hey'
+Information requise: 'Required information'
+Titre: 'Titre'
+Sous-titre: 'Sous-titre'
+Lien vers: 'Lien vers'
+Fichier (10Mo): 'File (10Mo)'
+
+Afficher: 'Show'
+Masquer: 'Hide'

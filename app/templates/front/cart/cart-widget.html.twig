@@ -1,0 +1,59 @@
+<div class="mini-cart-inner">
+    {% if carts.products|length > 0 %}
+        <ul class="mini-cart-list">
+            {% for index, cart in carts.products %}
+                <li>
+                    <div class="cart-img f-left">
+                        <a title="{{ cart.title }}"
+                           href="{{ path('front_product_reservation_show_detail', {'token': index}) }}">
+                            <img src="{{ data_uri_thumbnail('build/images/front/loading.jpg', 102, 130) }}"
+                                    {{ stimulus_controller('symfony/ux-lazy-image/lazy-image', {
+                                        src: asset('uploads/product_picture/' ~ cart.pictureName)|imagine_filter('product_modal_miniature')
+                                    }) }}
+                                 width="102" height="130" class="img-fluid"
+                                 alt="{{ cart.title }}"/>
+                        </a>
+                    </div>
+                    <div class="cart-content f-left text-left">
+                        <h5 class="text-center">
+                            <a href="{{ path('front_product_reservation_show_detail', {'token': index}) }}">{{ cart.title }} </a>
+                        </h5>
+                        <div>
+                            {% if cart.startDate != cart.endDate %}
+                                {{ cart.startDate }} - {{ cart.endDate }}
+                            {% else %}
+                                {{ cart.startDate }}
+                            {% endif %}
+                        </div>
+                        <div>Soit : {{ cart.numberDays }}</div>
+                        <div class="cart-price">
+                            <span class="amount">{{ cart.quantity }} <i class="fal fa-times"></i></span>
+                            <span class="price">{{ cart.price|number_format(2, ',')|default(0) }} €</span>
+                        </div>
+                    </div>
+                    <div class="del-icon f-right mt-30">
+                        <a href="{{ path('front_cart_delete', {'token':index}) }}"
+                           class="post-confirm"
+                           data-button-text="Supprimer"
+                           data-title="Supprimer"
+                           title="Supprimer"
+                           data-toggle="tooltip" data-placement="top"
+                           data-confirm-message="Souhaitez-vous supprimer ce produit ?"
+                        >
+                            <i class="fal fa-times"></i>
+                        </a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="total-price d-flex justify-content-between mb-30">
+        <span>Total TTC <i class="far fa-info-circle" style="color: #bc8246;" data-toggle="tooltip" data-placement="top"
+                           title="Frais de service inclus"></i> :</span>
+        <span>{{ carts.totalAmount|number_format(2, ',')|default(0) }} €</span>
+    </div>
+    <div class="checkout-link">
+        <a href="{{ path('front_cart_index') }}" title="Voir le panier" class="os-btn">Voir le panier</a>
+        <a class="os-btn os-btn-black" href="{{ path('front_stripe_payment_intent') }}" title="Réservez">Réservez</a>
+    </div>
+</div>

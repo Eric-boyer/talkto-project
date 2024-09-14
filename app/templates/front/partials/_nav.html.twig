@@ -1,0 +1,183 @@
+<!-- header area start -->
+<header>
+    <div id="header-sticky" class="header__area grey-bg">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-5 col-lg-5 col-md-5 col-sm-6">
+                    <div class="logo">
+                        <a href="{{ path('front_home') }}" title="Reented">
+                            <img src="{{ asset('build/images/front/logo.png')|imagine_filter('logo') }}" width="241" height="49"
+                                 alt="Reented"></a>
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-7 col-md-7 col-sm-6">
+                    <div class="header__right p-relative d-flex justify-content-between align-items-center">
+                        <div class="main-menu d-none d-lg-block">
+                            <nav>
+                                <ul>
+                                    <li class="active has-dropdown">
+                                        <a href="#" rel="nofollow">Catégories</a>
+                                        <ul class="submenu transition-3">
+                                            <li class="has-dropdown">
+                                                <ul>
+                                                    {% for category in getProductCategories() %}
+                                                        <li>
+                                                            <a href="{{ path('front_product_category', {'productCategory': category.slug}) }}"
+                                                               title="{{ category.title }}">{{ category.title }}</a>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{{ path('front_user_new') }}" title="Locataire">Locataire</a></li>
+                                    <li><a href="{{ path('front_seller_new') }}" title="Bailleur">Bailleur</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="mobile-menu-btn d-lg-none">
+                            <a href="#" class="mobile-menu-toggle" rel="nofollow" title="Menu"><i
+                                        class="fas fa-bars"></i></a>
+                        </div>
+                        <div class="header__action">
+                            <ul>
+                                <li><a href="#" rel="nofollow" title="Recherche"
+                                       class="search-toggle"><i class="ion-ios-search-strong"></i></a>
+                                </li>
+                                <li><a href="#" rel="nofollow" title="Panier" class="cart"><i
+                                                class="ion-bag"></i> (<span
+                                                id="cart-length">0</span>)</a>
+                                    <div class="mini-cart">
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="#" rel="nofollow" title="Menu">
+                                        <i class="far fa-bars"></i>
+                                    </a>
+                                    <ul class="extra-info">
+                                        <li>
+                                            {% if app.user %}
+                                                <div class="my-account">
+                                                    <div class="extra-title">
+                                                        <h5>
+                                                            Bonjour, {{ app.user.fullname }}</h5>
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="{{ path('front_user_account') }}"
+                                                               title="Mon compte">Mon compte</a>
+                                                        </li>
+                                                        <li><a href="{{ path('front_wishlist_index') }}"
+                                                               title="Favoris">Favoris</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{{ path('front_cart_index') }}"
+                                                               title="Panier">
+                                                                Panier
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{{ path('front_stripe_payment_intent') }}"
+                                                               title="Paiement">
+                                                                Paiement
+                                                            </a>
+                                                        </li>
+                                                        {% if is_granted('IS_IMPERSONATOR') %}
+                                                            <li>
+                                                                <a href="{{ impersonation_exit_path(path('back_home_dashboard') ) }}"
+                                                                   title="Déconnexion">
+                                                                    Exit impersonation
+                                                                </a>
+                                                            </li>
+                                                        {% else %}
+                                                            <li>
+                                                                <a href="{{ path('front_logout') }}"
+                                                                   title="Déconnexion" data-turbo="false">
+                                                                    Déconnexion
+                                                                </a>
+                                                            </li>
+                                                        {% endif %}
+                                                    </ul>
+                                                </div>
+                                            {% else %}
+                                                <div class="my-account">
+                                                    <div class="extra-title">
+                                                        <h5>Menu</h5>
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="{{ path('front_login') }}" title="Connexion">
+                                                                Connexion
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{{ path('front_user_new') }}" title="S'inscrire">
+                                                                S'inscrire
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{{ path('front_seller_new') }}"
+                                                               title="Devenez bailleur">
+                                                                Devenez bailleur
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="{{ path('front_cart_index') }}" title="Panier">
+                                                                Panier
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            {% endif %}
+                                        </li>
+                                        {#                                        <li> #}
+                                        {#                                            <div class="lang"> #}
+                                        {#                                                <div class="extra-title"> #}
+                                        {#                                                    <h5>Language</h5> #}
+                                        {#                                                </div> #}
+                                        {#                                                <ul> #}
+                                        {#                                                    <li><a href="#">English</a></li> #}
+                                        {#                                                    <li><a href="#">France</a></li> #}
+                                        {#                                                    <li><a href="#">Germany</a></li> #}
+                                        {#                                                    <li><a href="#">Bangla</a></li> #}
+                                        {#                                                </ul> #}
+                                        {#                                            </div> #}
+                                        {#                                        </li> #}
+                                        {#                                        <li> #}
+                                        {#                                            <div class="currency"> #}
+                                        {#                                                <div class="extra-title"> #}
+                                        {#                                                    <h5>currency</h5> #}
+                                        {#                                                </div> #}
+                                        {#                                                <ul> #}
+                                        {#                                                    <li><a href="#">USD - US Dollar</a></li> #}
+                                        {#                                                    <li><a href="#">EUR - Ruro</a></li> #}
+                                        {#                                                    <li><a href="#">GBP - Britis Pound</a></li> #}
+                                        {#                                                    <li><a href="#">INR - Indian Rupee</a></li> #}
+                                        {#                                                </ul> #}
+                                        {#                                            </div> #}
+                                        {#                                        </li> #}
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if not app.user %}
+                <div class="row align-items-center text-center">
+                    <div style="cursor: pointer" id="geolocalisation"
+                         class="col-12 d-none" {{ stimulus_action('commun', 'onStartLocalisation', 'click') }}>
+                        Souhaitez-vous activer la géolocalisation afin d'améliorer votre expérience ?
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</header>
+<!-- header area end -->
+<!--[if lte IE 9]>
+<p class="browserupgrade">Vous utilisez une version <strong>non à jour</strong> de votre navigateur. Merci <a
+        href="https://browsehappy.com/">de mettre à jour votre navigateur</a> pour en améliorer l'expérience et la
+    sécurité.</p>
+<![endif]-->

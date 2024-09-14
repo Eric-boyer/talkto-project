@@ -1,0 +1,60 @@
+name: Symfony Interest Dev
+
+on:
+    push:
+        branches: [ main ]
+    pull_request:
+        branches: [ main ]
+
+jobs:
+    symfony-tests:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                php: [ '8.3' ]
+        name: PHP ${{ matrix.php }}
+        steps:
+            #  To automatically get bug fixes and new Php versions for shivammathur/setup-php,
+            # change this to (see https://github.com/shivammathur/setup-php#bookmark-versioning):
+            # uses: shivammathur/setup-php@v2 shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
+            -   name: Setup PHP with tools on ${{ matrix.php }}
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php }}
+                    tools: php-cs-fixer, phpstan, cs2pr, phpcs
+
+#            -   name: Run phpcs
+#                run: |
+#                    cd app
+#                    phpcs -q --report=checkstyle --ignore=./src/Enum --standard=PSR12 --exclude=Generic.Files.LineLength ./src | cs2pr
+
+            -   name: Setup Node
+                uses: actions/setup-node@v1
+                with:
+                    node-version: '21.x'
+
+            #            -   name: PHP Syntax Checker (Lint)
+            #                uses: StephaneBour/actions-php-lint@8.1
+            #                with:
+            #                    # Folder to check syntax
+            #                    dir: 'app/src'
+            #
+            #            -   name: PHP Security Checker
+            #                uses: StephaneBour/actions-php-security-checker@1.2
+            #                with:
+            #                    composer-lock: 'app/composer.lock'
+            -   uses: actions/checkout@v3
+            -   name: Copy .env.test.local
+                run: php -r "file_exists('app/.env.test.local') || copy('app/.env.test', 'app/.env.test.local');"
+            -   name: Cache Composer packages
+                id: composer-cache
+                uses: actions/cache@v3
+                with:
+                    path: vendor
+                    key: ${{ runner.os }}-php-${{ hashFiles('**/app/composer.lock') }}
+                    restore-keys: |
+                        ${{ runner.os }}-php-${{ hashFiles('**/app/composer.lock') }}
+            -   name: Install Dependencies
+                run: "
+                    cd app/ &&
+                    composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist"

@@ -1,0 +1,50 @@
+<div class="panel panel-inverse">
+    <div class="panel-heading">
+        <h4 class="panel-title">Produits</h4>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive mb-4">
+            <table class="user-company table table-striped m-b-0">
+                <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Montant TTC</th>
+                    <th>Caution</th>
+                    <th>Statut</th>
+                    <th style="width: 50px;"></th>
+                    <th style="width: 50px;"></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.title|default('') }}</td>
+                        <td>{{ product.amount|number_format(2, ',')|default(0) }} €</td>
+                        <td>{{ product.caution|number_format(2, ',')|default(0) }} €</td>
+                        <td>{{ product.status.label|default('') }}</td>
+                        <td class="pl-4">
+                            <a title="Voir le produit"
+                               data-toggle="tooltip" data-placement="top"
+                               href="{{ path('back_product_show', {'id': product.id}) }}"
+                               class="btn btn-xs btn-primary">
+                                <i class="fa fa-pencil-alt"></i>
+                            </a>
+                        </td>
+                        <td class="pl-4">
+                            <a title="Suppression"
+                               data-toggle="tooltip" data-placement="top"
+                               href="{{ path('front_product_delete', {'token' : product.token}) }}"
+                               class="btn btn-xs btn-danger post-confirm"
+                               data-button-text="Suppression"
+                               data-title="Suppression"
+                               data-confirm-message="Souhaitez-vous supprimer cet élément ?">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

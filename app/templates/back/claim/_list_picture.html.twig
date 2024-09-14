@@ -1,0 +1,61 @@
+<div class="panel panel-inverse">
+    <div class="panel-heading">
+        <h4 class="panel-title">Photo(s) {{ type }}</h4>
+    </div>
+    <div class="panel-body" {{ stimulus_controller('bigpicture') }}>
+        <div class="table-responsive mb-4">
+            <div class="product__modal-box">
+                <div class="tab-content mb-20 bp-gallery" id="nav-tabContent-{{ type }}">
+                    {% if checkin.pictures.count > 0 %}
+                        {% for index, picture in checkin.pictures %}
+                            {% set active = '' %}
+                            {% if index == 0 %}
+                                {% set active = 'active' %}
+                            {% endif %}
+                            <div data-action="bp-galleryclick->bigpicture#loadGalleryCheckin"
+                                 class="tab-pane fade show {{ active }}" id="nav-{{ picture.token }}" role="tabpanel"
+                                 aria-labelledby="nav-{{ picture.token }}-tab">
+                                <div class="product__modal-img w-img">
+                                    <img data-bp="{{ asset('uploads/checkin/' ~ picture.name) }}"
+                                         data-caption="{{ picture.name }}"
+                                         src="{{ data_uri_thumbnail('build/images/front/loading.jpg', 316, 403) }}"
+                                            {{ stimulus_controller('symfony/ux-lazy-image/lazy-image', {
+                                                src: asset('uploads/checkin/' ~ picture.name)|imagine_filter('product_modal')
+                                            }) }}
+                                         width="316" height="403" class="img-fluid"
+                                         alt="{{ picture.name }}">
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        {% if checkin.pictures.count > 0 %}
+                            {% for index, picture in checkin.pictures %}
+                                {% set active = '' %}
+                                {% if index == 0 %}
+                                    {% set active = 'active' %}
+                                {% endif %}
+                                <a class="nav-item nav-link {{ active }}" id="nav-{{ picture.token }}-tab"
+                                   data-toggle="tab"
+                                   href="#nav-{{ picture.token }}" role="tab" aria-controls="nav-{{ picture.token }}"
+                                   aria-selected="true">
+                                    <div class="product__nav-img w-img">
+                                        <img src="{{ data_uri_thumbnail('build/images/front/loading.jpg', 102, 130) }}"
+                                                {{ stimulus_controller('symfony/ux-lazy-image/lazy-image', {
+                                                    src: asset('uploads/checkin/' ~ picture.name)|imagine_filter('product_modal_miniature')
+                                                }) }}
+                                             width="102" height="130" class="img-fluid"
+                                             alt="{{ picture.name }}">
+
+                                    </div>
+                                </a>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

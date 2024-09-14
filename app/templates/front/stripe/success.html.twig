@@ -1,0 +1,113 @@
+{% extends 'front/layout.html.twig' %}
+
+{% block title %}Confirmation de paiement accepté{% endblock %}
+
+{% block content %}
+    <!-- App features section-->
+    <!-- error area start -->
+    <section class="error__area pt-60 pb-100">
+        <div class="container">
+            <div class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2">
+                <div class="error__content text-center">
+                    <h2><span class="highlight comment">{{ message }}</span>
+                        {% if error is not same as (true) %}
+                            <br> Merci pour votre location ! Votre réservation est en cours de validation par nos services.
+                        {% endif %}
+                    </h2>
+                    {% if error is not same as (true) %}
+                        <p>
+                            Vous allez recevoir un email de confirmation de votre réservation une fois celui-ci validé.
+                            Retrouvez dans votre espace votre réservation, afin de discuter avec le(s) bailleur(s) de
+                            votre ou vos locations, pour convenir d'un horaire et retrouver votre facture.
+                        </p>
+                    {% endif %}
+                    <p>
+                        Merci de votre confiance l'équipe <span class="highlight comment">Reented</span>
+                    </p>
+                    <p class="text-center">
+                        {% if error is same as (true) %}
+                            <a class="os-btn os-btn-black" title="Retourner au paiement" href="{{ path('front_stripe_payment_intent') }}">Retourner au paiement</a>
+                            <br>
+                            <a class="os-btn os-btn-black" title="Retourner à votre espace" href="{{ path('front_user_account') }}">Retourner à votre espace</a>
+                        {% else %}
+                            <a class="os-btn os-btn-black" title="Retourner à votre espace" href="{{ path('front_user_account') }}">Retourner à votre espace</a>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{# {% block javascripts %} #}
+{# {{ parent() }} #}
+{#    <script> #}
+{#        // Initialize Stripe.js using your publishable key #}
+{#        const stripe = Stripe(stripePublicKey); #}
+
+{#        // Retrieve the "payment_intent_client_secret" query parameter appended to #}
+{#        // your return_url by Stripe.js #}
+{#        const clientSecret = new URLSearchParams(window.location.search).get( #}
+{#            'payment_intent_client_secret' #}
+{#        ); #}
+
+{#        // Retrieve the PaymentIntent #}
+{#        stripe.retrievePaymentIntent(clientSecret).then(({paymentIntent}) => { #}
+{#            const message = document.querySelector('#message') #}
+
+{#            // Inspect the PaymentIntent `status` to indicate the status of the payment #}
+{#            // to your customer. #}
+{#            // #}
+{#            // Some payment methods will [immediately succeed or fail][0] upon #}
+{#            // confirmation, while others will first enter a `processing` state. #}
+{#            // #}
+{#            // [0]: https://stripe.com/docs/payments/payment-methods#payment-notification #}
+{#            switch (paymentIntent.status) { #}
+{#                case 'succeeded': #}
+{#                    message.innerText = 'Success! Payment received.'; #}
+{#                    break; #}
+
+{#                case 'processing': #}
+{#                    message.innerText = "Payment processing. We'll update you when payment is received."; #}
+{#                    break; #}
+
+{#                case 'requires_payment_method': #}
+{#                    message.innerText = 'Payment failed. Please try another payment method.'; #}
+{#                    // Redirect your user back to your payment page to attempt collecting #}
+{#                    // payment again #}
+{#                    break; #}
+
+{#                default: #}
+{#                    message.innerText = 'Something went wrong.'; #}
+{#                    break; #}
+{#            } #}
+{#        }); #}
+{#    </script> #}
+{# {% endblock %} #}
+
+{#{% block gtag %}#}
+{#    {% if qualifications and prices %}#}
+{#        var googleTagFunc = function () {#}
+{#        gtag('event', 'purchase', {#}
+{#        "transaction_id": "{{ paymentIdentifier }}",#}
+{#        "affiliation": "Qualifelec Pros",#}
+{#        "value": {{ prices.feesTotal|replace({'.': ''})|replace({',': '.'}) }},#}
+{#        "currency": "EUR",#}
+{#        "tax": {{ prices.feesTaxes|replace({'.': ''})|replace({',': '.'}) }},#}
+{#        "shipping": 0,#}
+{#        "items": [#}
+{#        {% for qualification in qualifications %}#}
+{#            {#}
+{#            "id": "{{ qualification.sageCode }}",#}
+{#            "name": "{{ qualification.label }}",#}
+{#            "category": "Qualification",#}
+{#            "list_position": {{ loop.index }},#}
+{#            "quantity": 1,#}
+{#            "price": '{{ ((prices.fees|replace({',': '.'})) / qualifications|length)|number_format(2) }}'#}
+{#            }{{ not loop.last ? ','}}#}
+{#        {% endfor %}#}
+{#        ]#}
+{#        });#}
+{#        };#}
+{#    {% endif %}#}
+{#{% endblock %}#}

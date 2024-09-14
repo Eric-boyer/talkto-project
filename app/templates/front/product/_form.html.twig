@@ -1,0 +1,139 @@
+{% import "front/macros/macros.html.twig" as macros %}
+
+<div class="row">
+    <div class="col-xl-5 col-lg-5 col-md-6 col-sm-12 col-12">
+        <div class="product__modal-box">
+            <div class="tab-content mb-20" id="nav-tabContent">
+                {% if form.vars.value.pictures.count > 0 %}
+                    {% for index, picture in form.vars.value.pictures %}
+                        {% set active = '' %}
+                        {% if index == 0 %}
+                            {% set active = 'active' %}
+                        {% endif %}
+                        <div class="tab-pane fade show {{ active }}" id="nav-{{ picture.token }}" role="tabpanel"
+                             aria-labelledby="nav-{{ picture.token }}-tab">
+                            <div class="product__modal-img w-img">
+                                <img src="{{ data_uri_thumbnail('build/images/front/loading.jpg', 316, 403) }}"
+                                        {{ stimulus_controller('symfony/ux-lazy-image/lazy-image', {
+                                            src: asset('uploads/product_picture/' ~ picture.name)|imagine_filter('product_modal')
+                                        }) }}
+                                     alt="{{ picture.name }}"
+                                     width="316px" height="403" class="img-fluid"
+                                >
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <nav>
+                <div class="nav nav-tabs justify-content-start" id="nav-tab" role="tablist">
+                    {% if form.vars.value.pictures.count > 0 %}
+                        {% for index, picture in form.vars.value.pictures %}
+                            {% set active = '' %}
+                            {% if index == 0 %}
+                                {% set active = 'active' %}
+                            {% endif %}
+                            <a class="nav-item nav-link {{ active }}" id="nav-{{ picture.token }}-tab" data-toggle="tab"
+                               href="#nav-{{ picture.token }}" role="tab" aria-controls="nav-{{ picture.token }}"
+                               aria-selected="true">
+                                <div class="product__nav-img w-img">
+                                    <img
+                                            width="130px" height="403" class="img-fluid"
+                                            alt="{{ picture.name }}"
+                                            src="{{ data_uri_thumbnail('build/images/front/loading.jpg', 316, 403) }}"
+                                            {{ stimulus_controller('symfony/ux-lazy-image/lazy-image', {
+                                                src: asset('uploads/product_picture/' ~ picture.name)|imagine_filter('product_modal')
+                                            }) }}
+                                    >
+                                    {#                                    <a href="{{ path('front_product_picture_delete', {'token': picture.token}) }}" #}
+                                    {#                                       class="post-confirm" #}
+                                    {#                                       data-button-text="Supprimer" #}
+                                    {#                                       data-title="Supprimer" #}
+                                    {#                                       data-confirm-message="Souhaitez-vous supprimer ce photo ?" #}
+                                    {#                                    > #}
+                                    {#                                        <i class="fal fa-times"></i> #}
+                                    {#                                    </a> #}
+                                </div>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="col-xl-7 col-lg-7 col-md-6 col-sm-12 col-12">
+        <div class="product__modal-content" {{ stimulus_controller('product') }}>
+            {{ form_start(form, {attr: {'autocomplete':'off'}}) }}
+            {#    <div class="row"> #}
+            {#        <div class="col-3 profile__basic-thumb valign-items-center"> #}
+            {#            <img src="{{ asset('uploads/profile_picture/' ~ pictureName)|imagine_filter('profil') }}" #}
+            {#                 alt="{{ pictureName }}"> #}
+            {#        </div> #}
+            {#        <div class="col-8" style="margin-top: 23px"> #}
+            {#            {{ form_row(form.picture) }} #}
+            {#        </div> #}
+            {#    </div> #}
+            {#    {{ form_row(form.genre) }} #}
+            <div class="profile__edit-input">
+                {{ form_row(form.title) }}
+            </div>
+            <div class="profile__edit-input">
+                {{ form_row(form.shortDescription) }}
+            </div>
+            <div class="profile__edit-input">
+                {{ form_row(form.description) }}
+            </div>
+            <div class="profile__edit-input">
+                {{ form_row(form.caution) }}
+            </div>
+            <div class="profile__edit-input">
+                {{ form_row(form.amount) }}
+            </div>
+            <div class="profile__edit-input">
+                {{ form_row(form.quantity) }}
+            </div>
+            <div class="profile__edit-input">
+                {{ form_row(form.category) }}
+            </div>
+            <div class="profile__edit-input">
+                <button type="button" class="btn btn-primary btn-sm" title="Ajouter des photos à votre produit"
+                        data-action="click->product#onFileAdd">
+                    <i class="fas fa-plus"></i> Ajouter une image
+                </button>
+                {{ form_errors(form.handleError) }}
+            </div>
+            <div class="picture-collection mt-3"
+                 data-prototype="{{ macros.pictureField(form.uploadedPictures.vars.prototype)|e }}">
+                {% for index, picture in form.vars.value.pictures %}
+                    <div class="picture file-elt mt-1 mb-1 d-flex w-100">
+                        <div class="w-100">
+                            <span>Photo(s) n° <span class="file-index">{{ (index + 1) }}</span></span>
+                            {{ picture.name }}
+                        </div>
+                        <button type="button" class="btn" data-action="click->product#onFileDelete"
+                                data-token="{{ picture.token }}" data-product-token="{{ form.vars.value.token }}">
+                            <i class="fa far fa-trash-alt text-danger"></i>
+                        </button>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if not form.vars.value.id %}
+                <button class="os-btn w-100" formnovalidate id="submit-btn"
+                        data-loading-img="{{ asset('build/images/front/pulse.gif') }}"
+                        data-title="Créer"
+                >Créer
+                </button>
+            {% else %}
+                <button class="os-btn w-100" formnovalidate id="submit-btn"
+                        data-loading-img="{{ asset('build/images/front/pulse.gif') }}"
+                        data-title="Modifier"
+                >Modifier
+                </button>
+            {% endif %}
+            <div class="d-none">
+                {{ form_rest(form) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>

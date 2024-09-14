@@ -1,0 +1,161 @@
+<!-- checkout-area start -->
+<section class="checkout-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="your-order mb-30 text-center">
+                    <h3>Réservation {{ reservation.transaction ? reservation.transaction.reference : '' }}</h3>
+                    <div class="your-order-table table-responsive">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th class="product-name">Produit</th>
+                                <th class="product-name">Date</th>
+                                <th class="product-name">Qt.</th>
+                                <th class="product-name">Etat</th>
+                                <th class="product-total">Total</th>
+                                <th class="product-name">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for transactionLine in reservation.transaction.transactionLines %}
+                                {% set pictureName = '' %}
+                                {% if transactionLine.product.pictures.count > 0 %}
+                                    {% set pictureName = transactionLine.product.pictures.first.name %}
+                                {% endif %}
+                                <tr class="cart_item">
+                                    <td class="product-thumbnail">
+                                        <a href="{{ path('front_product_reservation_show_detail', {'token': transactionLine.product.token }) }}"
+                                           title="{{ transactionLine.product.title }}">
+                                            <img src="{{ data_uri_thumbnail('build/images/front/loading.jpg', 130, 130) }}"
+                                                    {{ stimulus_controller('symfony/ux-lazy-image/lazy-image', {
+                                                        src: asset('uploads/product_picture/' ~ pictureName)|imagine_filter('product_miniature')
+                                                    }) }}
+                                                 width="130" height="130" class="img-fluid"
+                                                 alt="{{ transactionLine.product.title }}"/>
+                                        </a>
+                                    </td>
+                                    <td class="product-name">
+                                        {% if transactionLine.startDate|date('d/m/Y') != transactionLine.endDate|date('d/m/Y') %}
+                                            {{ transactionLine.startDate|date('d/m/Y') }} <br>- {{ transactionLine.endDate|date('d/m/Y') }}
+                                        {% else %}
+                                            {{ transactionLine.startDate|date('d/m/Y') }}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <strong class="product-quantity">
+                                            {{ transactionLine.quantity }}
+                                        </strong>
+                                    </td>
+                                    <td class="product-name">
+                                        {{ transactionLine.status.label }}
+                                    </td>
+                                    <td class="product-total">
+                                        <span class="amount">{{ (transactionLine.amountTtc / 100)|number_format(2, ',')|default(0) }} €</span>
+                                    </td>
+                                    <td class="product-name">
+                                        <a class="profile__info-btn open-front-modal" type="button"
+                                           data-lg-size="true"
+                                           href="{{ url('front_chat_index', {'token': reservation.token, 'transactionLineToken': transactionLine.token}, true) }}"
+                                           data-modal-title="Chat"
+                                           title="Chat">
+                                            Chat
+                                        </a>
+                                        {% if transactionLine.status.value is not same as (constant('App\\Enum\\TransactionLineStatus::CANCELED').value) %}
+                                            {% if app.user.roleAsLabel is same as (constant('App\\Entity\\User::ROLE_SELLER')) %}
+                                                {% if transactionLine.startDate|date('d/m/Y') == "now"|date("d/m/Y") or transactionLine.getCheck(constant('App\\Enum\\CheckinType::IN'))|length == 0 %}
+                                                    <a class="profile__info-btn open-front-modal"
+                                                       href="{{ path('front_check_create', {'type': 'in', 'token': transactionLine.token}) }}"
+                                                       title="Check-in"
+                                                       data-modal-title="Check-in">
+                                                        Check-in
+                                                    </a>
+                                                    <br>
+                                                {% endif %}
+                                                {% if transactionLine.endDate|date('d/m/Y') <=  "now"|date("d/m/Y") or transactionLine.getCheck(constant('App\\Enum\\CheckinType::OUT'))|length == 0 %}
+                                                    <a class="profile__info-btn open-front-modal"
+                                                       href="{{ path('front_check_create', {'type': 'out', 'token': transactionLine.token}) }}"
+                                                       title="Check-out"
+                                                       data-modal-title="Check-out">
+                                                        Checkout
+                                                    </a>
+                                                    <br>
+                                                {% endif %}
+                                            {% endif %}
+                                            {% if transactionLine.canBeCancel %}
+                                                <a class="profile__info-btn post-confirm"
+                                                   data-button-text="Annuler"
+                                                   data-title="Annulation"
+                                                   data-confirm-message="Souhaitez-vous annuler cette réservation ?"
+                                                   href="{{ path('front_transaction_line_delete', {'token': transactionLine.token}) }}"
+                                                   title="Annuler votre réservation">Annulation</a>
+                                                <br>
+                                            {% endif %}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                            <tfoot>
+                            <tr class="cart-subtotal">
+                                <th colspan="3"></th>
+                                <th>Sous total HT</th>
+                                <td>
+                                    <span class="amount">{{ ((reservation.transaction.totalAmountTtc - reservation.transaction.totalAmountTva) / 100)|number_format(2, ',')|default(0) }} €</span>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr class="shipping">
+                                <th colspan="3"></th>
+                                <th>T.V.A (20%)</th>
+                                <td>
+                                    <ul>
+                                        <li>
+                                            <label>
+                                                <span class="amount">{{ (reservation.transaction.totalAmountTva / 100)|number_format(2, ',')|default(0) }} €</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr class="shipping">
+                                <th colspan="3"></th>
+                                <th>
+                                    Frais de service
+                                    <i class="far fa-info-circle" style="color: #bc8246;" data-toggle="tooltip"
+                                       data-placement="top"
+                                       title="Le montant des frais de service représente 10% du montant TTC."></i>
+                                </th>
+                                <td>
+                                    <ul>
+                                        <li>
+                                            <label>
+                                                <span class="amount">{{ (reservation.transaction.totalFees / 100)|number_format(2, ',')|default(0) }} €</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr class="order-total">
+                                <th colspan="3"></th>
+                                <th>Total TTC</th>
+                                <td>
+                                    <strong>
+                                        <span class="amount">
+                                            {{ ((reservation.transaction.totalAmountTtc + reservation.transaction.totalFees) / 100)|number_format(2, ',')|default(0) }} €
+                                        </span>
+                                    </strong>
+                                </td>
+                                <td></td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- checkout-area end -->

@@ -1,0 +1,17 @@
+framework:
+    mailer:
+        dsn: '%env(MAILER_DNS)%'
+        envelope:
+            sender: 'snakeater95@gmail.com'
+            #recipients: ['snakeater95@gmail.com']
+        headers:
+            from: 'Reented <support@reented.com>'
+
+when@prod:
+    framework:
+        mailer:
+            dsn: '%env(MAILER_DNS)%'
+            envelope:
+                sender: 'contact@reented.com'
+            headers:
+                from: 'Reented <contact@reented.com>'

@@ -1,0 +1,90 @@
+{% extends 'back/layout.html.twig' %}
+{% import "front/macros/macros.html.twig" as macros %}
+
+{% block title %}Configuration de la Home page{% endblock %}
+{% block page_title %}Configuration de la Home page {% endblock %}
+
+{% block action_buttons %}
+    <a title="Retour sur le contenu" href="{{ path('back_home_dashboard') }}"
+       class="btn btn-xs btn-primary">
+        <i class="fa fa-arrow-left"></i>&nbsp; Retour
+    </a>
+{% endblock %}
+
+{% block content %}
+    <div class="row" {{ stimulus_controller('back-homepage') }}>
+        <div class="col-xl-12">
+            {{ form_start(form, {attr: {'autocomplete':'off'}}) }}
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Titre</h4>
+                </div>
+                <div class="panel-body">
+                    {{ form_row(form.title) }}
+                </div>
+                <div class="panel-heading">
+                    <h4 class="panel-title">Mise en avant</h4>
+                    <button type="button" class="btn btn-primary btn-sm"
+                            title="Ajouter des slides"
+                            data-action="click->back-homepage#onWebsiteContentsAdd">
+                        <i class="fas fa-plus "></i> Ajouter
+                    </button>
+                </div>
+                <div class="panel-body">
+                    <div class="row col-12  websiteContent-collection" data-prototype="{{ form_widget(form.websiteContents.vars.prototype)|e }}">
+                        {% for websiteContentForm in form.websiteContents %}
+                            {{ form_widget(websiteContentForm) }}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="panel-heading">
+                    <h4 class="panel-title">Produit slider</h4>
+                    <button type="button" class="btn btn-primary btn-sm"
+                            title="Ajouter des produits au slider"
+                            data-action="click->back-homepage#onSlidersAdd">
+                        <i class="fas fa-plus "></i> Ajouter
+                    </button>
+                </div>
+                <div class="panel-body">
+                    <div class="row col-12 sliders-collection" data-prototype="{{ form_widget(form.sliders.vars.prototype)|e }}">
+                        {% for sliderForm in form.sliders %}
+                            {{ form_widget(sliderForm) }}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="panel-heading">
+                    <h4 class="panel-title">Produit sous slider</h4>
+                    <button type="button" class="btn btn-primary btn-sm"
+                            data-action="click->back-homepage#onUnderSlidersAdd">
+                        <i class="fas fa-plus "></i> Ajouter
+                    </button>
+                </div>
+                <div class="panel-body">
+                    <div class="row col-12 under-sliders-collection" data-prototype="{{ form_widget(form.underSliders.vars.prototype)|e }}">
+                        {% for underSliderForm in form.underSliders %}
+                            {{ form_widget(underSliderForm) }}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="panel-heading">
+                    <h4 class="panel-title">Produit milieu écran</h4>
+                    <button type="button" class="btn btn-primary btn-sm"
+                            data-action="click->back-homepage#onMidsAdd">
+                        <i class="fas fa-plus "></i> Ajouter
+                    </button>
+                </div>
+                <div class="panel-body">
+                    <div class="row col-12 mids-collection" data-prototype="{{ form_widget(form.mids.vars.prototype)|e }}">
+                        {% for midForm in form.mids %}
+                            {{ form_widget(midForm) }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="actions mt-4 text-center col-12 pb-2">
+                <button type="submit" class="btn btn-primary" formnovalidate>Enregistrer</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

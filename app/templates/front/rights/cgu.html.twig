@@ -1,0 +1,684 @@
+{% extends 'front/layout.html.twig' %}
+
+{% block title %}Conditions générales d'utilisation{% endblock %}
+
+{% block content %}
+    <section class="shop__area pb-65" {{ stimulus_controller('bigpicture')|stimulus_controller('rating') }}>
+        <div class="shop__top grey-bg-6 pt-50 pb-90">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 mb-lg-0 text-right">
+                        {{ include('front/rights/_nav_right.html.twig') }}
+                    </div>
+                    <div class="col-lg-9 mb-sm-12 mb-lg-0">
+                        <div class="mb-5">
+                            <div class="text-center">
+                                <h1>Conditions générales d’utilisation</h1>
+                            </div>
+                        </div>
+                        <div class="text-left">
+                            <div>
+                                <p>Mise à jour&nbsp;: le 01/01/2024</p>
+                                <p>&nbsp;</p>
+                                <h2>Définitions des termes</h2>
+                                <h2>&nbsp;</h2>
+                                <p>Au sein des présentes Conditions générales d’utilisation, les termes suivants sont
+                                    entendus tels que définis ci-dessous&nbsp;:&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p><b>Site Web</b>&nbsp;: le site Reented :&nbsp;<a
+                                            href="{{ app.request.schemeAndHttpHost }}">{{ app.request.schemeAndHttpHost }}</a>
+                                </p>
+                                <p><b>ALSI WEBTECH</b>&nbsp;: ALSI WEBTECH, Micro entrepreneur enregistré sous le numéro
+                                    893 371
+                                    344 000 19,
+                                    et seule exploitante du site web et de la marque Reented.</p>
+                                <p><b>CGU</b>&nbsp;: les présentes Conditions générales d’utilisation.</p>
+                                <p><b>Locataire</b>&nbsp;: personne inscrite sur le site web pour louer.</p>
+                                <p><b>Bailleur</b>&nbsp;: personne inscrite sur le site web pour mettre en location et louer.&nbsp;</p>
+                                <p><strong>Caractéristiques du (Locataire/Bailleur)</strong> : Informations renseignées par le (Locataire/Bailleur)
+                                    et ses caractéristiques.</p>
+                                <p><b>Messages</b>&nbsp;: seuls les (Locataire/Bailleur)s qui ont une réservation
+                                    peuvent engager l’action<br>
+                                    « Chat » dans le site web, et s’envoyer des Messages. Les Messages sont
+                                    visibles dans la messagerie accessible à partir de la réservation depuis le menu mon compte.</p>
+                                <p><strong>Photos de profil</strong>&nbsp;: photos de profil permettant aisément la
+                                    reconnaissance du (Locataire/Bailleur) : à cet égard, le (Locataire/Bailleur) accepte a minima d’éditer en
+                                    première position une photo de son visage où il est clairement reconnaissable, ces
+                                    deux critères cumulatifs constituant une condition essentielle de l’utilisation des
+                                    Services.&nbsp;</p>
+                                <p><b>Compte</b>&nbsp;: espace personnel dédié au (Locataire/Bailleur) sur le site web, auquel il
+                                    accède en s’inscrivant et en se connectant sur le site web. Il permet au (Locataire/Bailleur)
+                                    d’accéder aux Services. Un (Locataire/Bailleur) ne peut posséder qu’un seul Compte.</p>
+
+                                <p>&nbsp;</p>
+                                <h2>Article 1 : Champ d’application&nbsp;</h2>
+                                <p>&nbsp;</p>
+                                <p>Les CGU définissent les droits et obligations des parties dans le cadre de
+                                    l’utilisation du site web. Elles sont le support d’une relation contractuelle
+                                    entre le (Locataire/Bailleur) et Reented.</p>
+                                <p>&nbsp;</p>
+                                <p><b>1.1 Conflit de normes</b></p>
+                                <p>&nbsp;</p>
+                                <p>Les présentes conditions générales d’utilisation (CGU) définissent les principales
+                                    règles d’utilisation du site web. Elles sont complétées par des politiques
+                                    additionnelles&nbsp;
+                                    – la <a title="La Charte d’utilisation des cookies"
+                                          href="{{ path('front_cookies') }}">
+                                        Charte d’utilisation des cookies</a>
+                                    et la <a title="La charte de confiance" href="{{ path('front_trust_chart') }}">
+                                        Charte de confiance</a>
+                                    – afin de guider plus précisément le (Locataire/Bailleur) dans la
+                                    manipulation du site web. Dans l’hypothèse d’un conflit entre les différentes
+                                    politiques ayant pour conséquence un manque d’accessibilité, d’intelligibilité et/ou
+                                    de prévisibilité des règles, les présentes CGU priment&nbsp;sur la Politique de
+                                    confidentialité, la Charte d’utilisation des Cookies et la Charte de confiance.&nbsp;
+                                </p>
+                                <p>&nbsp;</p>
+                                <p><b>1.2 Autonomie des stipulations</b></p>
+                                <p>&nbsp;</p>
+                                <p>Dans l’hypothèse où l’une des stipulations des présentes CGU serait déclarée nulle ou
+                                    inapplicable par l’effet d’une loi, d’un règlement ou d’une décision émanant d’une
+                                    juridiction compétente, seule cette stipulation sera écartée tandis que les autres
+                                    stipulations conserveront leur validité et leur force, sauf à imaginer que les
+                                    présentes CGU soient dénaturées ou que cela entraine un déséquilibre significatif
+                                    des obligations à la charge des parties.&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <h2>Article 2 : Modification des CGU</h2>
+                                <p>&nbsp;</p>
+                                <p><b>2.1 Mise à jour</b></p>
+                                <p>&nbsp;</p>
+                                <p>Reented se réserve le droit, à tout moment et de manière unilatérale, de compléter ou
+                                    de modifier les présentes CGU de la façon qu’elle juge nécessaire, ou de mettre fin
+                                    aux Services.&nbsp;</p>
+                                <p>Le (Locataire/Bailleur) sera informé de la mise à jour des CGU via le site web et/ou par l’envoi
+                                    d’un e-mail à l’adresse communiquée par le (Locataire/Bailleur). Il appartient au (Locataire/Bailleur) de
+                                    s’assurer de la validité de cette adresse e-mail.</p>
+                                <p>Il incombe au (Locataire/Bailleur) de lire attentivement les CGU lors de leur mise à jour et de
+                                    prendre pleinement connaissance des modifications engendrées par cette dernière.</p>
+                                <p>Le fait que le (Locataire/Bailleur) continue à utiliser les Services du site web après la mise
+                                    à jour des CGU vaut acceptation sans réserve de sa part des modifications apportées
+                                    aux CGU.</p>
+                                <p>En cas de désaccord avec les modifications des CGU, le (Locataire/Bailleur) a la faculté de mettre
+                                    fin aux Services et de supprimer son Compte conformément à l’article 13.3.</p>
+                                <p>&nbsp;</p>
+                                <p><b>2.2 Application immédiate</b></p>
+                                <p>&nbsp;</p>
+                                <p>Toute nouvelle version des CGU sera immédiatement applicable aux (Locataire/Bailleur)s.</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <h2>Article 3&nbsp;: Loi applicable et règlement des litiges</h2>
+                                <h2>&nbsp;</h2>
+                                <p><b>3.1 Loi applicable</b></p>
+                                <p>&nbsp;</p>
+                                <p>Les présentes CGU sont soumises au droit matériel français, à l’exclusion de toutes
+                                    règles de conflits de lois. &nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p><b>3.2 Règlement des litiges</b></p>
+                                <p>&nbsp;</p>
+                                <p>En cas de différend, le (Locataire/Bailleur) s’engage préalablement à toute autre démarche
+                                    judiciaire ou extra-judiciaire, à contacter directement Reented par écrit (par
+                                    e-mail
+                                    ou par courrier, à l’adresse e-mail ou postale communiquée à l’article 14 des CGU)
+                                    afin de tenter de résoudre ce litige amiablement.</p>
+                                <p>En cas d’échec, le (Locataire/Bailleur) est informé qu’il peut choisir d’avoir recours gratuitement
+                                    à la médiation et peut présenter ses réclamations éventuelles sur la plateforme de
+                                    résolution des litiges mise en ligne par la Commission européenne à l’adresse
+                                    suivante :&nbsp;<a href="http://ec.europa.eu/consumers/odr/">http://ec.europa.eu/consumers/odr/</a>.
+                                </p>
+                                <p>Toute contestation ou litige relatif à la formation, l’interprétation, l’exécution ou
+                                    la fin des présentes ou en relation avec les présentes CGU qui n’aurait pu être
+                                    résolu amiablement sera soumis aux juridictions compétentes de Paris (France).</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <h2>Article 4 : Inscription</h2>
+                                <h2>&nbsp;</h2>
+                                <p><b>4.1 Modalités de téléchargement du site web</b></p>
+                                <p>&nbsp;</p>
+                                <p>Le site web est accessible gratuitement à cette adresse&nbsp;:&nbsp;<a
+                                            href="{{ app.request.schemeAndHttpHost }}">{{ app.request.schemeAndHttpHost }}</a>.
+                                </p>
+                                <p>&nbsp;</p>
+                                <p><b>4.2 Droit du (Locataire/Bailleur) à l’inscription</b></p>
+                                <p>&nbsp;</p>
+                                <p>Lorsque les conditions nécessaires au statut de (Locataire/Bailleur) sont remplies, Reented
+                                    attribue
+                                    au (Locataire/Bailleur), à titre personnel, un Compte contenant :</p>
+                                <p>• &nbsp; &nbsp;Une fiche profil</p>
+                                <p>• &nbsp; &nbsp;Une option de gestion des locations</p>
+                                <p>• &nbsp; &nbsp;Une option de gestion des réservations</p>
+                                <p>• &nbsp; &nbsp;Une option de gestion des produits</p>
+                                <p>Un (Locataire/Bailleur) ne peut posséder qu’un seul Compte.</p>
+                                <p>&nbsp;</p>
+                                <p><b>4.3 Obligations du (Locataire/Bailleur) à l’inscription</b></p>
+                                <p>&nbsp;</p>
+                                <p>Le (Locataire/Bailleur) doit impérativement être âgé a minima de 18 ans et garantit que toutes les
+                                    informations qu’il communique lors de son inscription sont exactes et à
+                                    jour.&nbsp;</p>
+                                <p>L’inscription s’effectue via ces moyens alternatifs&nbsp;:</p>
+                                <p>- Via une adresse e-mail&nbsp;: dans ce cas, aucune information sur le
+                                    (Locataire/Bailleur) ne peut être automatiquement récupérée et il lui appartient de fournir les
+                                    informations le concernant, telles que le prénom, le nom,&nbsp;le genre, son adresse et téléphone
+                                    ainsi que d’autres informations complémentaires s’il le souhaite et doit
+                                    fournir une de lui-même lors de son inscription.&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p>Lors de l’inscription, le (Locataire/Bailleur) consent aux présentes CGU et à la Politique de
+                                    confidentialité et s’engage à respecter les obligations à sa charge, notamment
+                                    celles mentionnées dans le Code de conduite du (Locataire/Bailleur) défini à l’article 8 des
+                                    présentes CGU.</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <h2>Article 5 : Services et fonctionnalités</h2>
+                                <h2>&nbsp;</h2>
+                                <p><b>5.1 Objet des Services</b></p>
+                                <p>&nbsp;</p>
+                                <p>Reented estune marketplace permettant au (Locataire/Bailleur) de retrouver au
+                                    sein du site web des produits autour de lui, ainsi que celles qui sont
+                                    susceptibles de l’intéresser en fonction de ses préférences de recherche,&nbsp;
+                                    de son activité de profil ou de son adresse postale.
+                                    L’usage du site web est strictement limité à des fins personnelles et de
+                                    loisirs.</p>
+                                <p>&nbsp;</p>
+                                <p>Chaque (Locataire/Bailleur) est libre de discuter et nouer des relations avec d’autres (Locataire/Bailleur)s dans
+                                    le respect des présentes CGU et de la loi.</p>
+                                <p>&nbsp;</p>
+                                <p>En aucun cas les Services proposés par Reented ne peuvent être assimilés à des
+                                    activités de conseil ou de courtage matrimonial. Ils visent uniquement à faciliter
+                                    la rencontre par le biais du site web selon votre réservation.</p>
+                                <p>&nbsp;</p>
+                                <p><b>5.2 Services aux (Locataire/Bailleur)s</b></p>
+                                <p>&nbsp;</p>
+                                <p>Les Services Reented sont disponibles depuis le site web à titre gratuit pour le (Locataire/Bailleur) qui s’engage au
+                                    respect des présentes CGU, à savoir notamment :</p>
+                                <p>• Envoyer des Messages en cas de réservation.</p>
+                                <p>• Compléter son profil, dans le respect des présentes CGU.</p>
+                                <p>&nbsp;</p>
+                                <h2>Article 6 : Protection des données personnelles</h2>
+                                <h2>&nbsp;</h2>
+                                <p>Reented accorde une grande importance à la protection de vos données personnelles et
+                                    au
+                                    respect de votre vie privée. Nous vous invitons à consulter notre Politique de
+                                    confidentialité et notre Charte de confiance pour savoir comment nous traitons vos
+                                    données personnelles, disponibles en cliquant sur les liens suivants&nbsp;:</p>
+                                <p>• <a href="{{ path('front_policy') }}">Politique de confidentialité</a></p>
+                                <p>• <a href="{{ path('front_trust_chart') }}">Charte de confiance</a></p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <h2>Article 7&nbsp;: Obligations et responsabilité de Reented</h2>
+                                <h2>&nbsp;</h2>
+                                <p><b>7.1 Moyens techniques et sécurité</b></p>
+                                <p>&nbsp;</p>
+                                <p>Toutes les mesures sont prises pour minimiser le risque d’accès frauduleux
+                                    dans le système de Reented. À cet égard, Reented se sert notamment de pare-feux et
+                                    d’équipements situés entre le réseau Internet et le réseau privé d’une entreprise
+                                    pour accroître la sécurité de ce dernier en filtrant le trafic en provenance ou à
+                                    destination d’Internet. Néanmoins, il est impossible de garantir de manière absolue
+                                    la sécurité d’un réseau.&nbsp;</p>
+                                <p>Reented n’est pas responsable des pannes, interruptions ou du mauvais fonctionnement
+                                    des Services du fournisseur d’accès à internet du (Locataire/Bailleur), de même que de toute cause
+                                    extérieure à Reented qui pourrait interrompre ou endommager l’accès aux Services
+                                    Reented.</p>
+                                <p>Le (Locataire/Bailleur) doit s’assurer de disposer d’une adresse de messagerie sécurisée. En dépit
+                                    ou suite à l’omission de ces précautions, et bien que cette probabilité soit faible,
+                                    le Compte du (Locataire/Bailleur) est susceptible d’être victime de fraude.&nbsp;</p>
+                                <p>Reented attire également l’attention du (Locataire/Bailleur) sur tout risque exceptionnel de
+                                    réception de Messages indésirables ou de Messages émanant prétendument de Reented.
+                                    Le
+                                    (Locataire/Bailleur) doit être attentif et vigilant afin de ne pas être victime d’escroquerie et
+                                    en avertit Reented, le cas échéant, en envoyant un courrier ou un e-mail à l’adresse
+                                    communiquée à l’article 14 des présentes.</p>
+                                <p>&nbsp;</p>
+                                <p><b>7.2 Comportements illégaux &nbsp;</b></p>
+                                <p>&nbsp;</p>
+                                <p>Reented ne pourra en aucun cas être tenus responsables, à quelque
+                                    titre que ce soit, d’actions illégales passibles de sanctions civiles ou pénales,
+                                    commises par ses (Locataire/Bailleur)s, parmi lesquelles et de manière non exhaustive :</p>
+                                <p>• Tous types d’escroquerie&nbsp;</p>
+                                <p>• Toutes activités à caractère professionnel</p>
+                                <p>• La prostitution</p>
+                                <p>• L’usurpation d’identité</p>
+                                <p>• L’atteinte à tous droits de propriété intellectuelle d’un tiers,</p>
+                                <p>• L’atteinte aux droits de la personnalité, tels que le droit à l’image et le droit
+                                    au respect de la vie privée.&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p><b>7.3 Système de signalement et de modération communautaire</b></p>
+                                <p>&nbsp;</p>
+                                <p>Reented, en tant qu’hébergeur, n’est tenue à aucune obligation légale de surveillance
+                                    du contenu transmis ou stocké via le site web en vertu de l’article 6.I-7° de la
+                                    Loi pour la confiance dans l’économie numérique du 21 juin 2004.</p>
+                                <p>Cependant, l’article 6.I-3° de cette même loi impose à Reented, au titre de son
+                                    statut
+                                    d’hébergeur, de prévoir un système de notification afin de signaler les contenus
+                                    illicites, abusifs et préjudiciables.</p>
+                                <p>Dans ce cas, après vérification par le Service Client, Reented s’engage à retirer
+                                    promptement ledit contenu.</p>
+                                <p>Au titre de l’article 6.I-5 de la LCEN&nbsp;: la connaissance d’un contenu litigieux
+                                    est présumée acquise lorsque sont notifiés à l’hébergeur&nbsp;:</p>
+                                <p>• La date de la notification</p>
+                                <p>• L’identité de l’émetteur de ce contenu</p>
+                                <p>• La description des faits litigieux {# (avec possibilité de joindre des captures
+                                d’écran des contenus litigieux) #}</p>
+                                <p>• Ainsi que les motifs pour lesquels le contenu doit être retiré.</p>
+                                <p>Reented a donc doté le site web d’un système de modération communautaire permettant
+                                    aux (Locataire/Bailleur)s de signaler les contenus visés à l’article 6.I-7 de la LCEN s’ils
+                                    constituent notamment l’apologie des crimes contre l’humanité, une provocation à la
+                                    commission d’actes de terrorisme et leur apologie, l’incitation à la haine raciale,
+                                    à la haine à l’égard de personnes à raison de leur sexe, de leur orientation ou
+                                    identité sexuelle ou de leur handicap ainsi que notamment la pornographie infantile,
+                                    l’incitation à la violence, l’incitation aux violences faites aux femmes, ainsi que
+                                    les atteintes à la dignité humaine.</p>
+                                <p>&nbsp;</p>
+                                <p>Guidées par une éthique professionnelle particulièrement rigoureuse à cet égard et
+                                    refusant d’être associées tant à des (Locataire/Bailleur)s violents ou insultants qu’à des propos
+                                    ou contenus illicites, abusifs et préjudiciables, les équipes de Reented accordent
+                                    une
+                                    importance primordiale à cette procédure de signalement, laquelle peut également
+                                    être mise en œuvre en cas de propos contraires à la bienséance.</p>
+                                <p>C’est pourquoi, lorsque le contenu publié par un (Locataire/Bailleur) fait l’objet d’un tel
+                                    signalement, le (Locataire/Bailleur) à
+                                    l’origine de la publication de ce contenu est susceptible de voir son Compte
+                                    suspendu, voire résilié, dans les conditions prévues à l’article 13.2 des présentes,
+                                    sur la base des éléments de preuve fournis par l’émetteur du signalement, et ce, afin
+                                    d’assurer le retrait du contenu litigieux conformément aux obligations légales de
+                                    Reented.</p>
+                                <p>&nbsp;</p>
+                                <p>Le (Locataire/Bailleur) dont les contenus publiés font l’objet d’un signalement ne sera en aucun
+                                    cas informé de l’identité du (Locataire/Bailleur) auteur du signalement.</p>
+                                <p>&nbsp;</p>
+                                <p>Ces systèmes de signalement sont accessibles et opérationnels
+                                    :&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p>• En haut à droite de la photo de profil du (Locataire/Bailleur) et en haut à droite de la
+                                    conversation avec le (Locataire/Bailleur) concerné.</p>
+                                <p>En cas de publication de contenu ayant fait l’objet d’une procédure de signalement et
+                                    susceptible d’être qualifiée d’infraction au regard des dispositions législatives et
+                                    réglementaires en vigueur, le (Locataire/Bailleur) victime de ce contenu est également invité à
+                                    saisir les autorités compétentes.</p>
+                                <p>En effet, la procédure de signalement mise en place par Reented ne remplace en rien
+                                    une
+                                    éventuelle plainte et procédure judiciaire à l’encontre du (Locataire/Bailleur) à l’origine du
+                                    contenu litigieux signalé.&nbsp;</p>
+                                <p>Tout abus du système de signalement (signalement infondé et effectué de mauvaise foi)
+                                    sera également considéré comme une violation des présentes CGU et pourra entrainer
+                                    la suspension / résiliation du Compte du (Locataire/Bailleur) ayant commis un tel abus,
+                                    conformément à l’article 13.2 des CGU, outre le site web de sanctions pénales
+                                    conformément à l’article 6.I-4 de la LCEN et des poursuites judiciaires donnant lieu
+                                    à l’indemnisation des victimes au titre de dommages et intérêts.</p>
+                                <p>&nbsp;</p>
+                                <p><b>7.4 Règles de prudence</b></p>
+                                <p>&nbsp;</p>
+                                <p>Le (Locataire/Bailleur) est seul responsable de la vérification de l’identité des personnes avec
+                                    qui il pourrait organiser une rencontre « réelle ». Reented ne saurait en aucun cas
+                                    être tenue responsable en cas de survenance d’un incident de quelque nature que ce
+                                    soit lors d’une rencontre « réelle ».</p>
+                                <p>&nbsp;</p>
+                                <p><b>7.5 Manifestation collective</b></p>
+                                <p>&nbsp;</p>
+                                <p>Toute utilisation des Services Reented dans le but d’organiser une réunion collective
+                                    de ses (Locataire/Bailleur)s constitue un détournement du Service. C’est pourquoi il est
+                                    formellement interdit de planifier ou organiser une manifestation sur la voie
+                                    publique au moyen du site web. Si une telle réunion avait lieu, la
+                                    responsabilité de Reented ne saurait être recherchée dans le cas d’un trouble à
+                                    l’ordre public ou de la survenance d’un quelconque dommage consécutif à de telles
+                                    réunions.</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <h2>Article 8&nbsp;: Code de conduite du (Locataire/Bailleur)&nbsp;</h2>
+                                <h2>&nbsp;</h2>
+                                <p><b>8.1 L’obligation de loyauté et d’honnêteté lors de l’inscription</b></p>
+                                <p>&nbsp;</p>
+                                <p>Afin d’acquérir le statut de (Locataire/Bailleur), il est nécessaire de réunir toutes les
+                                    conditions suivantes :</p>
+                                <p>• Remplir les conditions de majorité telles que prévues par la loi française (avoir
+                                    18 ans révolus).</p>
+                                <p>• Avoir rempli les informations de manière sincère et véridique sur le site web
+                                    Reented. Le
+                                    (Locataire/Bailleur) doit avoir communiqué le prénom, le nom, le sexe qui lui est
+                                    attribué sur ses actes d’état civil ainsi que son téléphone et son adresse.
+                                    À défaut, le (Locataire/Bailleur) s’engage à corriger les
+                                    erreurs sur son Compte. Le (Locataire/Bailleur) s’engage par la même occasion à fournir
+                                    une adresse e-mail valide.</p>
+                                <p>• S’engager à tenir régulièrement à jour les informations communiquées en accédant à
+                                    son Compte depuis le site web.</p>
+                                <p>• Avoir pris connaissance des présentes CGU et les accepter en validant son
+                                    inscription.</p>
+                                <p>Reented n’a ni l’obligation légale ni les moyens techniques de vérifier l’identité et
+                                    l’âge des (Locataire/Bailleur)s. Cependant en cas de doute, de présence d’éléments suspects ou sur
+                                    dénonciation d’un tiers via la fonctionnalité « signalement » laissant présumer une
+                                    usurpation d’identité ou la mention d’informations fictives ou erronées, Reented
+                                    procédera à une enquête dans les plus brefs délais et pourra rectifier, le cas
+                                    échéant, les informations communiquées sans dénaturer le profil du (Locataire/Bailleur).&nbsp;</p>
+                                <p>Pendant toute la durée de l’enquête, Reented se réserve le droit de suspendre le
+                                    Compte
+                                    du (Locataire/Bailleur) suspect et son accès au site web et d’effectuer les vérifications
+                                    nécessaires, en particulier en lui demandant la copie d’une pièce d’identité
+                                    officielle.&nbsp;</p>
+                                <p>Dans le cas où le (Locataire/Bailleur) ne serait pas en mesure de communiquer ledit justificatif,
+                                    ou en cas de violation avérée des présentes CGU, Reented pourra résilier le Compte
+                                    du
+                                    (Locataire/Bailleur) mis en cause conformément aux conditions décrites à l’article 13.2 des
+                                    présentes.&nbsp;</p>
+                                <p>Le (Locataire/Bailleur) s’engage à ne détenir qu’un seul et unique compte. À défaut, Reented pourra
+                                    résilier les comptes ultérieurs, dans les conditions décrites à l’article 13.2 des
+                                    présentes.&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p><b>8.2 L’obligation d’honnêteté et de loyauté pendant l’utilisation</b></p>
+                                <p>&nbsp;</p>
+                                <p>Afin de demeurer (Locataire/Bailleur), il convient de respecter toutes les conditions suivantes
+                                    :&nbsp;</p>
+                                <p>• Être honnête et sincère dans ses déclarations.</p>
+                                <p>• Ne mettre en ligne que des photos et/ou des informations de profil permettant
+                                    aisément la reconnaissance du (Locataire/Bailleur), et a minima en première position une Photo de
+                                    Profil telle que définie ci-avant, c'est-à-dire&nbsp;où votre visage est clairement
+                                    reconnaissable, ceci constituant deux critères fondamentaux à l'utilisation des
+                                    Services, et à l’exclusion de photos et/ou informations faisant apparaître des tiers
+                                    ou des éléments n’ayant aucun lien avec la personne du (Locataire/Bailleur), de sorte que Reented
+                                    se
+                                    réserve le droit de supprimer à sa discrétion toute photo et/ou profil ne répondant
+                                    pas à ces conditions.</p>
+                                <p>• Ne mettre en ligne aucune information confidentielle sur autrui telle que des
+                                    données financières.</p>
+                                <p>• Ne pas publier sur le site web des contenus et photos pornographiques ou portant
+                                    atteinte à la pudeur et à la dignité humaine.</p>
+                                <p>• Respecter le caractère privé des contenus et des Messages échangés avec d’autres (Locataire/Bailleur)s au sein du site web et par conséquent de ne pas
+                                    divulguer le contenu de ces Messages à des tiers.&nbsp;</p>
+                                <p>• Ne pas enfreindre les règlementations relatives à la propriété intellectuelle et
+                                    aux droits de la personnalité.</p>
+                                <p>• Ne pas troubler l’ordre public.</p>
+                                <p>• Ne pas commettre de délit de diffamation et plus largement à ne pas tenir de propos
+                                    injurieux, en particulier à caractère racial ou discriminatoire.</p>
+                                <p>• Respecter les lois et règlements en vigueur.</p>
+                                <p>• Ne pas proférer d’incitation à la violence ou à la haine raciale ou faire
+                                    l’apologie du terrorisme, de crimes de guerre ou de crimes contre l’humanité.</p>
+                                <p>• Ne pas enfreindre les règles de bienséance et demeurer correct vis-à-vis des autres
+                                    (Locataire/Bailleur)s.</p>
+                                <p>• Ne porter atteinte, d’aucune manière que ce soit, au déroulement normal des
+                                    Services ainsi qu’aux infrastructures du site web.</p>
+                                <p>• Ne pas modifier, copier, assembler, décompiler, ou tenter d’utiliser les codes
+                                    source, algorithmes et logiciels du site web, ainsi que ceux des partenaires de
+                                    Reented à d’autres fins que celles prévues dans les présentes conditions générales,
+                                    et
+                                    notamment à des fins d’ingénierie inverse.</p>
+                                <p style="text-align: justify;">• Ne pas utiliser de robots ou d’outils autres que ceux
+                                    mis à disposition par Reented au sein du site web lors de la prise de contact
+                                    avec d’autres.</p>
+                                <p>• Ne pas utiliser le site web pour organiser des services professionnels (d’escort
+                                    ou services similaires).</p>
+                                <p>• Ne pas démarcher d’autres (Locataire/Bailleur)s dans le but de promouvoir des produits ou
+                                    services payants.</p>
+                                <p>• Ne pas divulguer à d’autres (Locataire/Bailleur)s ses informations de connexion, en particulier
+                                    le mot de passe et l’identifiant de son Compte.</p>
+                                <p>• Ne pas faire de publicité ou d’incitation de quelque ordre que ce soit à utiliser
+                                    tout autre service, concurrent ou non et à ne pas commettre de faits de concurrence
+                                    déloyale.</p>
+                                <p>• Ne pas utiliser le site web dans le but d’organiser des rassemblements ou des
+                                    manifestations.</p>
+                                <p>Le (Locataire/Bailleur) s’interdit en outre d’effectuer toute copie et/ou diffusion, et/ou
+                                    transfert de données techniques qu’il intercepterait sur le réseau en lien avec
+                                    le site web Reented.</p>
+
+                                <p>&nbsp;</p>
+                                <p><b>8.3 Utilisation personnelle</b></p>
+                                <p>&nbsp;</p>
+                                <p>Le (Locataire/Bailleur) s’engage à utiliser le site web uniquement à des fins personnelles. Le
+                                    réseau Reented ne doit être exploité ni à des fins commerciales, ni promotionnelles
+                                    ni
+                                    électorales, ni de recrutement. L’envoi de Messages à but marketing et/ou commercial
+                                    et/ou de newsletters via la messagerie du site web qui incluraient, notamment,
+                                    mais de manière non exhaustive, des contenus, indications ou liens hypertextes
+                                    renvoyant à des sites ou supports de sociétés tierces, et notamment concurrentes de
+                                    Reented, est formellement prohibé.&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p><b>8.4 Responsabilité du (Locataire/Bailleur)</b></p>
+                                <p>&nbsp;</p>
+                                <p>Le (Locataire/Bailleur) est seul responsable de ses actions et des données qu’il publie via
+                                    le site web.</p>
+                                <p>Si la responsabilité de Reented venait à être recherchée dans le cadre du non-respect
+                                    par le (Locataire/Bailleur) de ses obligations, le (Locataire/Bailleur) garantit Reented contre toute
+                                    condamnation
+                                    prononcée à son encontre, trouvant son origine dans la transgression de la loi ou
+                                    des présentes CGU par le (Locataire/Bailleur).</p>
+                                <p>Le (Locataire/Bailleur) pourra rapporter les contenus illicites, portant atteinte aux lois et
+                                    règlementations ou aux présentes CGU au moyen des outils de signalement fournis par
+                                    le site web conformément à l’article 7.3 des présentes CGU.&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p><b>8.5 Photos</b></p>
+                                <p>&nbsp;</p>
+                                <p>Toutes les photos à caractère pornographique, exhibitionniste ou portant atteinte à
+                                    la pudeur et de manière générale contraires à la morale sont formellement prohibées.
+                                    La publication de telles photos constitue une faute grave, pouvant donner lieu à la
+                                    suspension et/ou à la résiliation du Compte du (Locataire/Bailleur), sans préjudice d’autres
+                                    sanctions pouvant être judiciairement prononcées.</p>
+                                <p>&nbsp;</p>
+                                <p><b>8.6 Rencontres réelles</b></p>
+                                <p>&nbsp;</p>
+                                <p>Reented met en garde les (Locataire/Bailleur)s qui désirent effectuer des rencontres « réelles ».
+                                    Il
+                                    appartient entièrement aux (Locataire/Bailleur)s de vérifier l’identité des personnes avec qui ils
+                                    organisent ces rencontres. Le déroulement de ces rencontres « réelles » est organisé
+                                    indépendamment de Reented, sous la seule responsabilité des (Locataire/Bailleur)s. La
+                                    responsabilité
+                                    de Reented ne saurait être recherchée pour les actes et incidents, quelle qu’en soit
+                                    la nature, commis ou provoqués par les (Locataire/Bailleur)s et/ou anciens (Locataire/Bailleur)s lors des
+                                    évènements se déroulant suite à l’utilisation du site web.</p>
+                                <p>&nbsp;</p>
+                                <p><b>8.7 Tenue du Compte</b></p>
+                                <p>&nbsp;</p>
+                                <p>Le (Locataire/Bailleur) doit consulter régulièrement sa messagerie et ses notifications par
+                                    lesquelles Reented le tiendra informé, entre autres, des informations relatives à
+                                    ses
+                                    Services et des modifications et mises à jour éventuellement apportées. Ces
+                                    informations pourront également être envoyées par courriel à l’adresse électronique
+                                    du (Locataire/Bailleur) obtenue lors de l’inscription sur le site web Reented.</p>
+                                <p>Le (Locataire/Bailleur) peut accéder aux Services de son Compte en se connectant au site web au
+                                    moyen d’un identifiant unique. Le (Locataire/Bailleur) est seul
+                                    responsable de ses informations de connexion et doit veiller à ce qu’aucun tiers ne
+                                    puisse y accéder. En particulier, le (Locataire/Bailleur) garantit Reented de toute communication
+                                    ou
+                                    utilisation ou déclaration faite par l’intermédiaire de son Compte.</p>
+                                <p>&nbsp;</p>
+                                <p><b>8.8 Équipements</b></p>
+                                <p>&nbsp;</p>
+                                <p>Les équipements (matériels ou logiciels) nécessaires à l’accès aux Services ainsi que
+                                    tous les autres frais afférents, y compris les frais de télécommunication sont à la
+                                    charge exclusive du (Locataire/Bailleur). Le (Locataire/Bailleur) est seul responsable du matériel utilisé dans
+                                    le cadre du Service.</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <h2>Article 9 : Services payants&nbsp;</h2>
+                                <h2>&nbsp;</h2>
+                                <p>&nbsp;</p>
+                                <p><b>9.1</b>&nbsp;<b>Modalités de</b> <b>Paiement</b></p>
+                                <p>&nbsp;</p>
+                                <p>Le paiement est traité et géré par Stripe.</p>
+                                <p><b>Reented ne dispose d’aucun contrôle sur le paiement, le changement de devise ou le
+                                        transfert de fonds lui-même, de même que sur les éventuels frais inhérents à ces
+                                        opérations. Par conséquent, Stripe est
+                                        seul responsable des conditions et opérations de paiement.</b></p>
+                                <p><b>Reented dispose de faculté de remboursement de votre achat.
+                                        Toute demande relative au paiement doit être adressée à notre adresse d'<a
+                                                href="mailto:support@reented.com">support@reented.com</a>.</b></p>
+                                <p>Reented ne collecte aucune donnée bancaire. Vos coordonnées bancaires sont collectées
+                                    et traitées directement par Stripe et restent hors du contrôle de Reented.</p>
+                                <p>&nbsp;</p>
+                                <h2>Article 10 : Propriété intellectuelle</h2>
+                                <p>&nbsp;</p>
+                                <p><b>10.1 Prérogatives au titre du droit d’auteur</b></p>
+                                <p>&nbsp;</p>
+                                <p>Les œuvres originales proposées par Reented sont la propriété exclusive de Reented.
+                                    Reented
+                                    est titulaire de l’intégralité des droits y afférents.</p>
+                                <p>Toute représentation et/ou reproduction et/ou diffusion et/ou exploitation partielle
+                                    ou totale des contenus et Services proposés par le site web tels que les
+                                    logiciels, les animations, les textes, les photos, les vidéos, le graphisme et plus
+                                    largement la structure générale, par quelque procédé que ce soit, sous quelque forme
+                                    que ce soit, sur quelque support que ce soit et par quelque média que ce soit, est
+                                    strictement interdite sans l’autorisation préalable expresse et écrite de Reented et
+                                    est passible de poursuites judiciaires.</p>
+                                <p>Ces œuvres originales sont protégées par les articles L.335-3 et suivants du Code de
+                                    la propriété intellectuelle actuellement en vigueur en France, et ce, pour le monde
+                                    entier.</p>
+                                <p>&nbsp;</p>
+                                <p><b>10.2 Licence</b></p>
+                                <p>&nbsp;</p>
+                                <p>Les droits d’utilisation concédés par Reented au (Locataire/Bailleur) sont réservés à un usage
+                                    privé
+                                    et personnel. Toute autre utilisation par le (Locataire/Bailleur) est interdite sans
+                                    l’autorisation expresse, écrite et préalable de Reented.&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p>Le (Locataire/Bailleur) concède à Reented et ses partenaires une licence gratuite, non exclusive,
+                                    pour le monde entier et perpétuelle d’utilisation, reproduction, représentation,
+                                    modification, traduction de tout élément siège de propriété intellectuelle et des
+                                    droits de la personnalité (incluant son droit à l'image, son droit au nom et à la
+                                    voix) (textes, photos, vidéos, etc.) qu’il sera amené à fournir à Reented via
+                                    le site web dans le but non exclusif de soutenir ses efforts de communication
+                                    auprès des autres (Locataire/Bailleur)s. Cette licence sera exploitée par Reented dans la limite
+                                    du
+                                    respect du droit à l’image, des attributs de la personnalité, du droit au respect de
+                                    la vie privée, de la protection des données personnelles de l’utilisateur, et ce,
+                                    sans dénaturer l’authenticité du profil du (Locataire/Bailleur) et en demeurant conforme à son
+                                    profil. Cette licence autorise Reented à rendre ces éléments compatibles avec ses
+                                    performances techniques ou les formats des supports concernés. Ces droits sont
+                                    concédés pour le monde entier pour toute la durée d’exécution des présentes CGU
+                                    entre le (Locataire/Bailleur) et Reented.&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p>Le (Locataire/Bailleur) demeure propriétaire du contenu et des données personnelles qu’il
+                                    fournit.</p>
+                                <p>&nbsp;</p>
+                                <p>Le (Locataire/Bailleur) garantit Reented contre toute action en justice, recours ou condamnation
+                                    prononcée à son encontre trouvant son origine dans la violation par le (Locataire/Bailleur) de
+                                    tous droits de propriété intellectuelle ou droits de la personnalité de tiers. Le
+                                    (Locataire/Bailleur) garantit Reented de toutes réclamations ou dommages tels que, de manière non
+                                    exhaustive, des demandes d’indemnisation qui pourraient en résulter.&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p>Dans le cadre du service de recommandation de Profils, le (Locataire/Bailleur) concède à Reented
+                                    les
+                                    mêmes droits d’utilisation et garanties telles que décrits dans la licence susvisée,
+                                    afin de permettre l’envoi de la sélection indicative des trois profils aux autres
+                                    (Locataire/Bailleur)s via le site web et via une newsletter éditoriale ou thématique envoyée par
+                                    courriel - étant précisé que cette liste de recommandation pourrait différer de
+                                    celle que le (Locataire/Bailleur) pourra retrouver effectivement dans son profil sur le site web
+                                    reented, car les profils sont affinés continuellement en fonction de leur pertinence
+                                    et de leur statut.</p>
+                                <p>&nbsp;</p>
+                                <h2>Article 11 : Contrefaçon, concurrence déloyale&nbsp;et parasitisme</h2>
+                                <h2>&nbsp;</h2>
+                                <p>Il est formellement prohibé de concevoir un produit similaire au site web ou d’en
+                                    créer une dérive, et plus largement de se rendre coupable de parasitisme, d’actes
+                                    d’imitation, de dénigrement ou tout autre acte constitutif de concurrence déloyale
+                                    ou d’actes de contrefaçon. Le cas échéant, Reented se réserve le droit d’assigner le
+                                    (Locataire/Bailleur) en vue d’obtenir réparation intégrale du préjudice que lui a causé le
+                                    (Locataire/Bailleur).</p>
+                                <p>Le (Locataire/Bailleur) s’expose en outre à de lourdes sanctions juridiques s’il réussit ou tente
+                                    d’accorder des licences ou sous-licences, vendre, revendre, transférer, céder,
+                                    distribuer ou exploiter commercialement d’une autre manière ou mettre à la
+                                    disposition de tiers les Services ou le site web d’une quelconque façon.&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <h2>Article 12 : Fin du contrat&nbsp;</h2>
+                                <p>&nbsp;</p>
+                                <p><b>12.1 Suppression du Compte par le (Locataire/Bailleur)</b></p>
+                                <p>&nbsp;</p>
+                                <p>Le (Locataire/Bailleur) peut décider de supprimer définitivement son Compte à tout moment et sans
+                                    préavis, au moyen de l’une des alternatives suivantes&nbsp;:</p>
+                                <ul>
+                                    <li>En le supprimant lui-même depuis le site web en se rendant dans mon compte &gt;
+                                        Supprimer mon compte.
+                                    </li>
+                                    <li>En envoyant un e-mail ou un courrier à Reented dont l’adresse postale et
+                                        l’adresse
+                                        électronique apparaissent à l’article 14 des présentes.&nbsp;
+                                    </li>
+                                </ul>
+                                <p>Par conséquent, le profil du (Locataire/Bailleur) sera définitivement supprimé y inclus toutes les
+                                    données,&nbsp;inscrits sur son Compte.</p>
+                                <p>&nbsp;</p>
+                                <p>Lorsque le (Locataire/Bailleur) désire recommencer à utiliser le site web suite à une suppression
+                                    de son Compte, il est dans l’obligation de s’inscrire dans les mêmes conditions que
+                                    pour une première inscription.</p>
+                                <p>Lors de la suppression du Compte :</p>
+                                <p>• Le profil du (Locataire/Bailleur) sera complètement supprimer ainsi que toutes les données lui
+                                    étant
+                                    propre.</p>
+                                <p>Le (Locataire/Bailleur) ne pourra pas réactiver son ancien Compte.&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p><b>12.2 Suspension / Résiliation du Compte par Reented en cas de manquement d’un
+                                        (Locataire/Bailleur)
+                                        aux CGU</b></p>
+                                <p>&nbsp;</p>
+                                <p>En cas de manquement d’un (Locataire/Bailleur) aux CGU, son Compte peut à tout moment être suspendu
+                                    à titre conservatoire puis résilié de plein droit par Reented.</p>
+                                <p>Reented pourra suspendre le Compte du (Locataire/Bailleur) pendant la durée nécessaire aux
+                                    vérifications menées par le service client de Reented à la suite d’un signalement
+                                    conformément à l’article 7.3 des présentes ou en cas de manquement présumé aux CGU
+                                    susceptible d’être réparé.</p>
+                                <p>Le (Locataire/Bailleur) est invité à prendre contact avec le service client de Reented par e-mail
+                                    afin
+                                    d’obtenir de plus amples informations sur les motifs de la suspension de son compte,
+                                    faire valoir ses observations éventuelles et/ou apporter la preuve que le manquement
+                                    a été réparé.</p>
+                                <p>&nbsp;</p>
+                                <p>Si dans les 30 jours de la notification de suspension du Compte, le (Locataire/Bailleur) n’a pas
+                                    contacté le service client de Reented ou si les éléments fournis par le (Locataire/Bailleur) au
+                                    service client n’ont pas permis de réparer le manquement, Reented pourra notifier au
+                                    (Locataire/Bailleur) la résiliation de son Compte via le site web et/ou par e-mail et informer
+                                    le (Locataire/Bailleur) de la durée pendant laquelle il ne pourra se réinscrire à le site web. À
+                                    défaut de précision, cette durée est fixée à 1&nbsp;an&nbsp;à compter de la
+                                    notification de la résiliation du Compte.</p>
+                                <p>Lors de la résiliation du Compte :</p>
+                                <p>• Le profil du (Locataire/Bailleur) sera complètement supprimer ainsi que toutes les données lui
+                                    étant
+                                    propre.</p>
+                                <p>Le (Locataire/Bailleur) ne pourra pas rouvrir de Compte pendant une durée maximale de 1&nbsp;an&nbsp;à
+                                    compter de la notification de la résiliation du Compte.</p>
+                                <p>&nbsp;</p>
+                                <p><b>12.3 Résiliation des Comptes inactifs par Reented</b></p>
+                                <p>&nbsp;</p>
+                                <p>Reented procède à la suppression des Comptes inactifs, tels que définis ci-après.</p>
+                                <p>Un Compte est considéré comme inactif si, pendant une période continue de 1 an, les
+                                    deux critères cumulatifs suivants sont réunis :</p>
+                                <p>• le site web du Membre n’a pas établi de contact avec les serveurs de Reented
+                                    et</p>
+                                <p>• Le (Locataire/Bailleur) n’a pas utilisé le site web. En tout état de cause, le Compte d’un
+                                    (Locataire/Bailleur) Premium n’est pas considéré comme inactif.</p>
+                                <p>Le (Locataire/Bailleur) sera informé par e-mail, à l’adresse qu’il a renseignée dans le site web,
+                                    de la suppression de son Compte moyennant un préavis de 8 jours.</p>
+                                <p>Le (Locataire/Bailleur) peut, à tout moment pendant la durée du préavis, réactiver son Compte, ce
+                                    qui aura pour effet de suspendre la procédure de résiliation. La totalité du contenu
+                                    du profil sera alors conservée par le (Locataire/Bailleur).</p>
+                                <p>À l’issue de ce préavis, et à défaut de manifestation de la part du (Locataire/Bailleur), le compte
+                                    sera automatiquement supprimé par Reented.</p>
+                                <p>Lors de la suppression du Compte&nbsp;:</p>
+                                <p>• Le profil du (Locataire/Bailleur) sera complètement supprimer ainsi que toutes les données lui
+                                    étant
+                                    propre.</p>
+                                <p>• Les données du Membre seront conservées pendant 1 an à compter de cette date au
+                                    regard notamment des obligations légales qui pèsent sur Reented selon les modalités
+                                    développées à l’article 9 de la Politique de confidentialité, puis supprimées
+                                    définitivement à l’issue de ce délai.</p>
+                                <p>Le (Locataire/Bailleur) ne pourra pas réactiver ni solliciter la réactivation de son ancien
+                                    Compte.</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <h2>Article 13 : Contact&nbsp;</h2>
+                                <h2>&nbsp;</h2>
+                                <p>Reented peut être contacté par courrier au 8 rue du Sentier, 75002, Paris.&nbsp;</p>
+                                <p>Le (Locataire/Bailleur) peut aussi contacter Reented par courrier électronique à l’adresse suivante
+                                    :<br>
+                                    <a href="mailto:support@reented.com">support@reented.com</a></p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <h2>Article 14 : Clause de confidentialité&nbsp;</h2>
+                                <h2>&nbsp;</h2>
+                                <p>Ni Reented ni le (Locataire/Bailleur) ne sont autorisés à divulguer des informations sur le contrat
+                                    les liant en cas de litige et chacune des parties s’engage à respecter une clause de
+                                    confidentialité qui l’oblige à préférer une négociation confidentielle en cas de
+                                    différend.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

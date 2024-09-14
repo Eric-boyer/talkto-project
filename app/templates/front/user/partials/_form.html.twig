@@ -1,0 +1,83 @@
+{% set pictureName = '' %}
+{% if user.picture is not null %}
+    {% set pictureName = user.picture.name %}
+{% endif %}
+{% set currentRoute = app.request.attributes.get('_route') %}
+<div class="profile__edit-wrapper" {{ stimulus_controller('user') }} {{ user.role is same as (constant('App\\Entity\\User::ROLE_SELLER')) ? 'data-turbo="false"' : '' }}>
+    {{ form_start(form, {attr: {'data-user-target': 'userForm', 'data-action': 'user#checkRecaptcha', 'autocomplete':'off'} }) }}
+    <div class="profile__edit-input text-center">
+        <div class="profile__basic-thumb valign-items-center">
+            <label for="user_uploadPicture">
+                <img id="profilePictureImg" style="cursor: pointer"
+                     src="{{ pictureName ? asset('uploads/profile_picture/' ~ pictureName)|imagine_filter('profil_miniature') : 'https://bootdey.com/img/Content/avatar/avatar2.png' }}"
+                     width="120" height="120" class="img-fluid"
+                     alt="{{ pictureName ? user.fullname : 'avatar' }}" {{ stimulus_target('user', 'imgFile') }}>
+            </label>
+            {{ form_errors(form.uploadPicture) }}
+        </div>
+        <span style="display: none">
+            {{ form_widget(form.uploadPicture, {'attr': {'data-user-target':'profileFile', 'data-action': 'change->user#imagesPreview'}}) }}
+        </span>
+    </div>
+    <div class="profile__edit-input">
+        {{ form_row(form.genre) }}
+    </div>
+    <div class="profile__edit-input">
+        {{ form_row(form.email) }}
+    </div>
+    <div class="profile__edit-input">
+        {{ form_row(form.lastname) }}
+    </div>
+    <div class="profile__edit-input">
+        {{ form_row(form.firstname) }}
+    </div>
+    <div class="profile__edit-input">
+        {{ form_row(form.address) }}
+        <div class="zone-address w-50">
+            <ul class="address d-none">
+            </ul>
+        </div>
+    </div>
+    <div class="profile__edit-input">
+        {{ form_row(form.additionalAddress) }}
+    </div>
+    <div class="profile__edit-input">
+        {{ form_row(form.zipCode) }}
+    </div>
+    <div class="profile__edit-input">
+        {{ form_row(form.city) }}
+    </div>
+    <div class="profile__edit-input">
+        {{ form_row(form.country) }}
+    </div>
+    <div class="profile__edit-input">
+        {{ form_row(form.phone) }}
+    </div>
+    <div class="profile__edit-input">
+        {{ form_row(form.plainPassword) }}
+    </div>
+    {% if not app.user %}
+        <div class="login-action mb-20 fix">
+            <span class="log-rem f-left">
+                {{ form_row(form.terms) }}
+            </span>
+            {% if currentRoute is not same as ('front_seller_new') %}
+                <span class="forgot-login f-right">
+                    <b><a href="{{ path('front_seller_new') }}" class="alert-link" title="Vous aussi devenez bailleur">Vous aussi devenez bailleur !</a></b>
+                </span>
+            {% endif %}
+        </div>
+        <button class="os-btn w-100" formnovalidate id="submit-btn"
+                data-loading-img="{{ asset('build/images/front/pulse.gif') }}"
+                data-title="S'inscrire"
+        >S'inscrire</button>
+        <div class="or-divide"><span>ou</span></div>
+        <a href="{{ path('front_login') }}" class="os-btn os-btn-black w-100" title="Se connecter">Se connecter</a>
+    {% else %}
+        <button class="os-btn w-100" formnovalidate id="submit-btn"
+                data-loading-img="{{ asset('build/images/front/pulse.gif') }}"
+                data-title="Modifier"
+        >Modifier</button>
+    {% endif %}
+    {{ form_end(form) }}
+</div>
